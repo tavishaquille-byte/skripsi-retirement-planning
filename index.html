@@ -3,1725 +3,789 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skripsi — Tavi Shaquille Ramadhani (2306281465) | FIA UI 2026</title>
+  <title>Portal Riset Skripsi — Tavi Shaquille Ramadhani | FIA UI 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Instrument Serif', 'serif'],
+          },
+          colors: {
+            uiYellow: '#FFCC00',
+            navy: {
+              950: '#070D19',
+              900: '#0B1528',
+              800: '#132342',
+              700: '#1D3563',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    /* =====================================================================
-       TYPOGRAPHY & NORDIC SLATE PALETTE
-       Headings & UI Numbers: 'Poppins', Helvetica, Arial, sans-serif
-       Body Copy: Helvetica, 'Helvetica Neue', 'Poppins', Arial, sans-serif
-       Background: Pure White (#FFFFFF)
-       Palette: #06141B, #11212D, #253745, #4A5C6A, #9BA8AB, #CCD0CF
-    ===================================================================== */
-    :root {
-      --c-white: #FFFFFF;
-      --c-tint: #F8FAFA;
-      --c-obsidian: #06141B;
-      --c-midnight: #11212D;
-      --c-steel: #253745;
-      --c-slate: #4A5C6A;
-      --c-pewter: #9BA8AB;
-      --c-alabaster: #CCD0CF;
-    }
-
-    * {
-      box-sizing: border-box;
-      border-color: var(--c-alabaster);
-    }
-
     body {
-      background-color: var(--c-white);
-      color: var(--c-obsidian);
-      font-family: Helvetica, 'Helvetica Neue', 'Poppins', Arial, sans-serif;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
     }
-
-    h1, h2, h3, h4, .font-poppins {
-      font-family: 'Poppins', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    .glass-nav {
+      background: rgba(11, 21, 40, 0.92);
+      backdrop-filter: blur(12px);
     }
-
-    .font-helvetica {
-      font-family: Helvetica, 'Helvetica Neue', 'Poppins', Arial, sans-serif;
+    .hero-gradient {
+      background: radial-gradient(circle at 85% 20%, rgba(255, 204, 0, 0.14) 0%, transparent 45%),
+                  radial-gradient(circle at 15% 80%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
+                  linear-gradient(135deg, #070D19 0%, #0B1528 55%, #132342 100%);
     }
-
-    .tabular-nums {
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Custom Range Sliders matching image_956b6a.png */
-    input[type="range"].ThesisSlider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 6px;
-      background: #CCD0CF;
-      border-radius: 999px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    input[type="range"].ThesisSlider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #06141B;
-      border: 3px solid #9BA8AB;
-      box-shadow: 0 2px 5px rgba(6, 20, 27, 0.25);
-      cursor: pointer;
-      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
-    }
-
-    input[type="range"].ThesisSlider::-webkit-slider-thumb:hover {
-      transform: scale(1.12);
-      background: #11212D;
-      border-color: #4A5C6A;
-    }
-
-    input[type="range"].ThesisSlider::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #06141B;
-      border: 3px solid #9BA8AB;
-      box-shadow: 0 2px 5px rgba(6, 20, 27, 0.25);
-      cursor: pointer;
-      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
-    }
-
-    /* Clean Tabs */
-    .clean-tab {
-      position: relative;
-      color: #4A5C6A;
-      transition: all 0.18s ease;
-      padding-bottom: 12px;
-      border-bottom: 2px solid transparent;
-    }
-    .clean-tab:hover {
-      color: #06141B;
-    }
-    .clean-tab.active {
-      color: #06141B;
-      font-weight: 600;
-      border-bottom-color: #06141B;
-    }
-
-    /* Pill Switcher */
-    .pill-switch {
-      transition: all 0.16s ease;
-      color: #4A5C6A;
-      background: transparent;
-    }
-    .pill-switch:hover {
-      color: #06141B;
-    }
-    .pill-switch.active {
-      background-color: #06141B;
-      color: #FFFFFF;
-    }
-
-    .bar-fill {
-      transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #FFFFFF;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #CCD0CF;
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #9BA8AB;
+    .tab-btn.active {
+      background-color: #0B1528;
+      color: #FFCC00;
+      border-color: #0B1528;
     }
   </style>
 </head>
-<body class="min-h-screen bg-white text-[#06141B] selection:bg-[#253745] selection:text-white">
+<body class="antialiased selection:bg-yellow-400 selection:text-slate-950">
 
-  <!-- =====================================================================
-       STICKY NAVIGATION BAR
-  ====================================================================== -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#CCD0CF]">
-    <div class="max-w-[1320px] mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
-      <!-- Left Identity -->
-      <div class="flex items-center gap-3 min-w-0">
-        <a href="#" class="font-poppins text-xs font-bold tracking-wider uppercase text-[#06141B] flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#06141B]"></span>
-          <span>FIA UI · SKRIPSI 2026</span>
-        </a>
-        <span class="text-[#CCD0CF] hidden sm:inline">|</span>
-        <span class="text-xs text-[#4A5C6A] truncate hidden sm:inline">
-          Tavi Shaquille Ramadhani <span class="text-[#9BA8AB]">(2306281465)</span>
-        </span>
+  <!-- TOP NAVIGATION -->
+  <header class="glass-nav sticky top-0 z-50 border-b border-white/10 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-uiYellow flex items-center justify-center text-navy-950 font-extrabold text-sm shadow-sm">
+          UI
+        </div>
+        <div>
+          <p class="text-xs font-bold tracking-wider uppercase text-yellow-400">Fakultas Ilmu Administrasi</p>
+          <p class="text-xs text-slate-300 hidden sm:block">Program Studi Ilmu Administrasi Niaga • 2026</p>
+        </div>
       </div>
 
-      <!-- Center Navigation -->
-      <nav aria-label="Navigasi Utama" class="hidden lg:flex items-center gap-6 font-poppins text-xs font-medium text-[#4A5C6A]">
-        <a href="#kalkulator" class="text-[#06141B] font-semibold hover:text-[#253745] transition-colors">Kalkulator Skripsi</a>
-        <a href="#fenomena" class="hover:text-[#06141B] transition-colors">Bab 1 • Data &amp; Fenomena</a>
-        <a href="#model-hipotesis" class="hover:text-[#06141B] transition-colors">Bab 2 • Model &amp; Hipotesis</a>
-        <a href="#tinjauan-pustaka" class="hover:text-[#06141B] transition-colors">Tinjauan Pustaka</a>
-        <a href="#metode" class="hover:text-[#06141B] transition-colors">Bab 3 • Metode PLS-SEM</a>
-        <a href="#instrumen" class="hover:text-[#06141B] transition-colors">Lampiran • Kuesioner 35 Butir</a>
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300">
+        <a href="#fenomena" class="hover:text-yellow-400 transition">Bab 1: Fenomena</a>
+        <a href="#teori" class="hover:text-yellow-400 transition">Bab 2: Model & 7 Hipotesis</a>
+        <a href="#metode" class="hover:text-yellow-400 transition">Bab 3: Metode & Sampel</a>
+        <a href="#instrumen" class="hover:text-yellow-400 transition">Instrumen Bilingual</a>
+        <a href="#kuesioner" class="px-4 py-2 rounded-full bg-uiYellow text-navy-950 font-bold hover:bg-yellow-300 transition shadow-sm">
+          Isi Kuesioner (bit.ly/4BKjazX)
+        </a>
       </nav>
 
-      <!-- Right Action -->
-      <div class="flex items-center gap-3">
-        <a
-          href="#instrumen"
-          class="font-poppins text-xs font-medium px-4 py-2 rounded-xl bg-[#06141B] text-white hover:bg-[#253745] transition-colors flex items-center gap-2"
-        >
-          <span>Uji Instrumen Kuesioner</span>
-          <span class="text-[#9BA8AB]">→</span>
-        </a>
-      </div>
+      <a href="https://bit.ly/4BKjazX" target="_blank" rel="noopener noreferrer"
+         class="md:hidden px-3.5 py-1.5 rounded-full bg-uiYellow text-navy-950 font-bold text-xs">
+        Buka Kuesioner
+      </a>
     </div>
   </header>
 
-  <main class="max-w-[1320px] mx-auto px-5 sm:px-8">
-
-    <!-- =====================================================================
-         HERO SECTION (RELAXED POPPINS & HELVETICA)
-    ====================================================================== -->
-    <section class="pt-10 pb-12 lg:pt-14 lg:pb-16">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-
-        <!-- Left 7 Cols: Title & Metadata -->
-        <div class="lg:col-span-7 space-y-5">
-          <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8FAFA] border border-[#CCD0CF] font-poppins text-xs font-medium text-[#253745]">
-            <span>Portal Riset &amp; Demonstrasi Instrumen Skripsi</span>
-            <span>•</span>
-            <span>Ilmu Administrasi Niaga FIA UI (2026)</span>
+  <!-- HERO SECTION -->
+  <section class="hero-gradient text-white py-14 lg:py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Thesis Info -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-semibold text-yellow-300">
+            <span>SKRIPSI SARJANA (S1) FIA UI</span>
+            <span class="text-white/40">•</span>
+            <span>NOVEMBER 2026</span>
+            <span class="text-white/40">•</span>
+            <span>JAKARTA (N = 450)</span>
           </div>
 
-          <h1 class="font-poppins text-2xl sm:text-4xl lg:text-[40px] font-bold leading-[1.22] tracking-tight text-[#06141B]">
-            Pengaruh <em>Financial Literacy</em> dan <em>Future Time Perspective</em> terhadap <em>Retirement Planning Behavior</em> dengan <em>Retirement Goal Clarity</em> sebagai Variabel Mediasi
+          <h1 class="text-2xl sm:text-4xl lg:text-[40px] font-extrabold tracking-tight leading-[1.2]">
+            Pengaruh <span class="italic font-serif font-normal text-yellow-300">Financial Literacy</span> dan <span class="italic font-serif font-normal text-yellow-300">Future Time Perspective</span> terhadap <span class="italic font-serif font-normal text-yellow-300">Retirement Planning Behavior</span> melalui <span class="italic font-serif font-normal text-yellow-300">Retirement Goal Clarity</span> pada Karyawan Swasta Jakarta
           </h1>
 
-          <p class="font-poppins text-base sm:text-lg font-medium text-[#253745]">
-            Studi pada Karyawan Sektor Swasta di Wilayah Jabodetabek
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Penelitian kuantitatif berbasis <span class="italic text-white font-medium">Capacity, Willingness, and Opportunity (CWO) Model</span> (Hershey et al., 2013) dan <span class="italic text-white font-medium">Image Theory</span> (Beach & Mitchell, 1987) untuk menganalisis determinan perilaku persiapan dana pensiun karyawan tetap sektor swasta di Provinsi DKI Jakarta.
           </p>
 
-          <p class="font-helvetica text-sm sm:text-base text-[#4A5C6A] leading-relaxed max-w-2xl">
-            Mengapa <strong class="text-[#06141B]">89% pekerja muda rutin menabung</strong>, tetapi <strong class="text-[#06141B]">hanya 29% yang menyiapkan dana pensiun</strong> dan lebih dari <strong class="text-[#06141B]">80% klaim JHT dicairkan sebelum usia pensiun</strong>? Penelitian ini menguji peran kejelasan tujuan pensiun (<em>retirement goal clarity</em>) sebagai mekanisme psikologis yang menjembatani kapasitas keuangan dan orientasi masa depan menjadi perilaku perencanaan pensiun yang nyata.
-          </p>
+          <!-- Researcher Badge & Quick Stats -->
+          <div class="pt-2 grid sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <p class="text-slate-400">Peneliti Utama</p>
+              <p class="font-bold text-white text-sm mt-0.5">Tavi Shaquille Ramadhani</p>
+              <p class="text-yellow-400/90 font-medium">NPM 2306281465 • Niaga UI</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <p class="text-slate-400">Target Sampel & Lokasi</p>
+              <p class="font-bold text-white text-sm mt-0.5">450 Responden Valid</p>
+              <p class="text-sky-300 font-medium">3 Kohort Usia @150 • DKI Jakarta</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <p class="text-slate-400">Metode & Instrumen</p>
+              <p class="font-bold text-white text-sm mt-0.5">PLS-SEM (SmartPLS)</p>
+              <p class="text-emerald-300 font-medium">7 Hipotesis • 31 Indikator (35 Butir)</p>
+            </div>
+          </div>
 
-          <!-- Author & Advisor Strip -->
-          <div class="pt-4 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[#CCD0CF] text-xs">
-            <div>
-              <span class="text-[#9BA8AB] block">Peneliti (Mahasiswa)</span>
-              <span class="font-poppins font-semibold text-sm text-[#06141B]">Tavi Shaquille Ramadhani (2306281465)</span>
-            </div>
-            <div>
-              <span class="text-[#9BA8AB] block">Dosen Pembimbing Skripsi</span>
-              <span class="font-poppins font-semibold text-sm text-[#06141B]">Dra. Novita Ikasari, M.Comm., Ph.D., CIQaR.</span>
-            </div>
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="https://bit.ly/4BKjazX" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-uiYellow text-navy-950 font-extrabold text-sm hover:bg-yellow-300 transition shadow-lg">
+              <span>Isi Kuesioner Sekarang</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <a href="#kuesioner"
+               class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/15 transition">
+              <span>Lihat Kriteria & QR Code</span>
+            </a>
           </div>
         </div>
 
-        <!-- Right 5 Cols: Interactive CWO Model & Image Theory Mechanism Switcher + Key Facts -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="p-5 sm:p-6 rounded-2xl border border-[#CCD0CF] bg-[#F8FAFA] space-y-4">
-            <div class="flex items-center justify-between gap-2">
+        <!-- Right Column: Highlighted QR Code & Direct Bitly Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-white text-slate-900 rounded-2xl p-6 sm:p-7 shadow-2xl border-2 border-yellow-400 relative overflow-hidden">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
               <div>
-                <span class="font-poppins text-[11px] uppercase tracking-wider text-[#253745] font-semibold block">Kerangka Teori Utama (Bab 2.2)</span>
-                <span class="font-poppins text-sm font-bold text-[#06141B]">Mekanisme CWO Model &amp; Image Theory</span>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider">
+                  Call for Respondents • Aktif
+                </span>
+                <h2 class="text-lg font-extrabold text-slate-900 mt-1">Kuesioner Penelitian Skripsi</h2>
               </div>
-              <span class="font-poppins text-[11px] text-[#4A5C6A] bg-white px-2.5 py-1 rounded-lg border border-[#CCD0CF]">Hershey et al. (2013)</span>
+              <div class="text-right">
+                <p class="text-[11px] font-semibold text-slate-400 uppercase">Durasi</p>
+                <p class="text-sm font-extrabold text-navy-900">5–10 Menit</p>
+              </div>
             </div>
 
-            <div class="p-1 rounded-xl bg-white border border-[#CCD0CF] grid grid-cols-2 gap-1 font-poppins text-xs">
-              <button type="button" onclick="setHeroCwoMode('tanpa')" id="cwo-btn-tanpa" class="pill-switch py-2 px-2 rounded-lg text-center font-medium">
-                Tanpa Goal Clarity
+            <!-- QR Code Container -->
+            <div class="flex flex-col items-center justify-center bg-slate-50 rounded-xl p-4 border border-slate-200">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQAgMAAAD90d5fAAAADFBMVEX////n5+cZGRkAAACN8eQ7AAAKQ0lEQVR42u2dvW4bSRKAe4jVEFgmDsw9QASW+QbHV6AB2xtcoj2oGWgD59qA8QUL8hHGB/ABDpAPFhUovkCeV6AWuOiSuQN9gTbYRAeQWoh9U93VPd09P/wxKVl0VUDbrRl+JK2qrr8uMkZCQkJCQkJCQkJCQkJC8uVIwD05lsv8Zfrw6nn681fP5EJTrX+VXpEuBE350E3X/fu7BZBw7Mk5rNbG4y78iLGv1UIAC6mcqisO1cOZWnAkKoIIT+5htS7EkDWE6LK2WEgqLKQSp1ekC224rCNmjA38+wlCkP2E2Kp0CXcf8B8RMuJ9sQA9Thc+8iOALMbnzXT1HpVxIO7s+0shQ+uf+BIFQly5Bcitejv3eMMAFozUPh0yU5BAEIQgTwDS3TbkAPdnA0nVussOQIGlPoOepzLiPSHm8HAHyt4Ef0BC8PajSkhdvdLMKM3Ry4jFFP7sGIuGkqjVGUJitTpZDzLDn8b66QhCkKcFmRdCGtuFLNC/5vw1uNYdtaVfqk1fQlIP/JXR+M0gwlg06a1IyMCyaAk83cTYLoIQ5EuF4MUNMX/GUq+7G0iH/mV6xRYhchuXcT5s9QIe5vz4dBxvEyK0GxK43oogCEG+UIhOermQuUqwKQgo40yF2Bc5iEl1rRs64FtjJlIYWKGDB9k4PhHKHhKEIE8ZsiiGxBtARlYSvG8cbgFxNoTNAWzF7zg/UQ/p1afqgSuHe27d3ls9PShDh1i98MR8OtLEgbeynRykHXhIyIQgBHmaEJmKqpXpSX9lSK5wxiFbdgQPPZVUu5DON+eHoPGn47dwxQG44VJd+SqFswppuO/P2C5tpYRJXHyCEIQgTxzS8u3AFExAlpdeExJiDs3Uv2R5OjaFs74qp/VA+xdYxQbt/jMWu428r4DULedHRyKYgMgyEswPY7JKoVs/JAhB9hHShBr1KN03A6FL0uluG/uQA9A9Wd+S+TysbY/g4SZdl7v0e9ibC6WvEwApZGpZJg/SUWarpSCODNUtU3iGYTFkoBMQAWb6s/pC18lBzpTZzEPws56Y3oBdQyKCEORBIQHo9kLlr2WNWgk2lKVBs2kXkw63XOCqsHWjW11StT+C/bpbBqm5eb/MdtnVOWa9v6mVDcycmmRZsmA9yK2xowQhyMNApsshtyWQoFBPgk305CNs3kKnzqX8gJ60uVu2jdZRt1Hj75QdkBrfw3bT5QUBYduuof8Sh9qpYcZ2ZU5Ny7Tm7RDSJghBHg8SWZm1qdFihNxa1AzSdyALpiFhKUQmydFU3Kkt/dJAFmYjR0iIrj3nAwXB2vYC71vJQJY29pn0YFGqUiinRhCEIPsKcZXxPf59pNNbUvc0ZMTfYDAPKe8zhJizHJcrmpXA/futsSK2iTOBtVedC1c0kDW3+Ry764oga9YZCUKQvYHMIUcmVMwtVXkEpWpZ1uY6fSblAiABqH2kClvHq0M0y6T+W8pKeZ14TNXjQ/foy5qQmfkcco19NqROEII8OqRWBsnpiQsJcEftOpCwNKmG2TKukmry2NcPqPGQPJfutIQsIEkewm4eQqK962v8IdiB0vRg1l2XmM/B7bnLpQeLDrm0y7wVZu7+dEiHIATZLaSkSNPRgXWAKbOhk40L4qyKXQ3pl0HkEQ+ZBI9U4ew9aDEmynQuvQ+9qXjZ30C3c5As8GZltou559Xc+GRhfw6xNpsepF1ZAgwJQpA9gATQHRaplhKpjGNIaDfAv5YKdgILtjLKlhIG++536d59DMp4gYF3KSRUra7aigxN+q5rbam2WZGXQfN5eh/eHNqBd4lL5Po6HmRi2dGGcX4m1gn3rGPgQSARQQjibFqNHUMCjJ270AqKgxcmqpm0p1zrsTmDOVMb7Tn42hISqNLXeVN563cVDndfn1fThfaJqdkZT3puOTWpAZtYb5hZR1/C6qK/C6m7ELvoz9zmfRuytLOAIAR5JEhbBfZZbXtSDiltvZJbs4SgxtdxvIqU01TjuRrBIEvVzGg8g90+wrL2KHUFzkobxcuMUpYWmFita56JsxMX7Yqeu61BOgQhyKNA0MltmzOSQxcCXm+9DNLXHrI631VMyEJsLETrEBsPhUp9PoGFfypXQPaTRwYiT5BAbk5m2wV2nJeG2Lmj6w1rYoSwPCfPQGauTqfS4d4mJCIIQR70V1gqI7e6Qs6NUskQ+606rynzXT+qU5w9HIWCTydHFEq1PFGheYlZkadJ28YoZDNc3PK78Bt1nFcblzkqOW8FITM3PhGmIFABsd0XghBkvyCBOQTSUPp8jH3hGEy/Vmnud6afXEOwpmUmnSlIscOduSGNggxfbPXcuXMkArffJak8tRFuCMmKEx4kIghB8pDWp0CmlZBlemKfqbInq5TqSUkVm/OfYDfH8YVS4/VeHes+0ndKrRk2sb02VWyMrnsm1Va6BzfMO05cr8M0091baQHpD9zbNy9rFNc9tPZJmmUQloe0CUKQx4S03EOTAwdyj0k14w8s4Ia5ffNQhdjlfSvmPFd2/FNYkP+BCTgwCbYmf6Nyb9yaeyyd/6q+lZo/iMbpPI3zfkmWuBC++9JZNqyCIATZPuRBfoUDVClMZI0tZQwg8I5UJxk35emshCX0MHI5/0yG2JeiMgTOxRKytm2bnaGfmjdOhzyYJkPscHVIlpEoTDUEhUfslpyWJQhBPm/IdLnD7Q0/wueUDaIHlgceoNeNX+Ihhx81lRs+V9ahts4Yp+yFtyy/pG41yTEzxsn+UoENIW0ryZ+rPnonaQhCkM8QktOTDSEFAw6z2QojnGuKZ7HxwEhkIE0deKeQb8oc7up5kLmDrEKPamTunHZhivnbgogSSIcgBPlsIXXYwb2MVd/yhTM9Ka39ekOMpRMfqwEsiQnC7/RklQBXY/MVQ9gnazv/eUhuCBRz50HmZsQkfnwiykrxBCHIHkOUMh6bsxzZmCPuq2hsDmdzkxZbCVJzJ4pPrUjbNjZ/AFPVck90rg6p+0OgmL1aMNNCLO+rJwhB9gvSVCczPUhTDTi8hE03wiq2P230bHVIxxT7bEjfDDjE1VVzDxWQgQ8p6P8jyJcOCR4CcphuoN3nQbQJZLEqpDNhYfSXelIF8b6mr8m5mh/Mcb/vWpADdSD7wgTh8PK/SVh9chVWQrzQgTlHa7Lk+sy6TNjjJlj69EG0AWS4FuT6KHjxobdjyK+z8Bfxn6Tk/35LkMWH+vVVL/m5luwQMu9/P/k53DFk2v4efrt2C0naf5pc1XcMuW6/mfyjnlytCYmqIK3cO/lj//qqdf2hXgbJfRWvhNzob70+L4BgEG4gtbsPv98sLm/Exb+7K6YHs0RgbAUeA38UeieDBLH4q/jtTvxL/He4Mwg7OX8xPjk7ff33X3cI0XKy6O4cEsZTtnNI42Oye8i3Lx4C0nsASOO3YlNf9iX1Y18Zv/Pd6cO8kx0W94nnCmcvcV/nx+n1X6V/PtOXHntPEDQ3+ZoQEhISEhISEhISEhISEpJ9kv8Dzqq75aA6qXoAAAAASUVORK5CYII=" 
+                   alt="QR Code Kuesioner Skripsi Tavi (bit.ly/4BKjazX)" 
+                   class="w-48 h-48 sm:w-52 sm:h-52 object-contain rounded-lg shadow-sm bg-white p-2 border border-slate-200" />
+              <p class="text-xs font-medium text-slate-500 mt-2.5 text-center">
+                Pindai (<span class="italic">Scan</span>) QR Code dengan kamera ponsel atau klik tautan resmi di bawah ini:
+              </p>
+            </div>
+
+            <!-- Bitly Link Box + Copy Button -->
+            <div class="mt-4 flex items-center gap-2">
+              <a href="https://bit.ly/4BKjazX" target="_blank" rel="noopener noreferrer"
+                 class="flex-1 px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 font-mono text-sm font-bold text-navy-900 text-center truncate transition">
+                https://bit.ly/4BKjazX
+              </a>
+              <button onclick="copyBitlyLink()" id="copyBtnHero"
+                      class="px-4 py-3 rounded-xl bg-navy-900 hover:bg-navy-800 text-yellow-400 font-bold text-xs transition shrink-0">
+                Salin Link
               </button>
-              <button type="button" onclick="setHeroCwoMode('aktif')" id="cwo-btn-aktif" class="pill-switch active py-2 px-2 rounded-lg text-center font-medium">
-                Mediasi Goal Clarity Aktif
-              </button>
             </div>
 
-            <div id="heroCwoPipeline" class="space-y-2.5 text-xs"></div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div class="p-4 rounded-2xl border border-[#CCD0CF] bg-white">
-              <div class="font-poppins text-[11px] font-medium text-[#4A5C6A]">Mercer Adequacy 2025</div>
-              <div class="font-poppins text-xl font-bold text-[#06141B] mt-0.5 tabular-nums">40,1 <span class="text-xs font-normal text-[#4A5C6A]">(Predikat D)</span></div>
-            </div>
-            <div class="p-4 rounded-2xl border border-[#CCD0CF] bg-white">
-              <div class="font-poppins text-[11px] font-medium text-[#4A5C6A]">Klaim JHT 2025 (BPJS TK)</div>
-              <div class="font-poppins text-xl font-bold text-[#06141B] mt-0.5 tabular-nums">3,90 Juta <span class="text-xs font-normal text-[#4A5C6A]">(Rp57,25 T)</span></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =====================================================================
-         PROMINENT SECTION: KALKULATOR INTERAKTIF SKRIPSI
-         (Placed immediately below Hero & matching image_956b6a.png 100%)
-    ====================================================================== -->
-    <section id="kalkulator" class="py-8 sm:py-12">
-      <div class="rounded-[20px] border border-[#CCD0CF] bg-white p-6 sm:p-10 shadow-[0_12px_36px_-12px_rgba(6,20,27,0.07)]">
-
-        <!-- Card Header -->
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between pb-6 mb-8 border-b border-[#CCD0CF] gap-6">
-          <div>
-            <div class="font-poppins text-xs uppercase tracking-[0.14em] text-[#4A5C6A] font-semibold mb-2">
-              KALKULATOR INTERAKTIF SKRIPSI
-            </div>
-            <h2 class="font-poppins text-2xl sm:text-[30px] font-bold text-[#06141B] leading-[1.25] max-w-2xl">
-              Simulasi Kategori Mean (Tabel 3.2) &amp; Estimasi Dana Pensiun Mandiri
-            </h2>
-          </div>
-          <p class="font-helvetica text-xs sm:text-sm text-[#4A5C6A] max-w-md leading-relaxed">
-            Sesuaikan skor variabel (skala 1,00–5,00) dan usia Anda untuk melihat kategori <em>Mean</em> menurut rumus Neuman (2020) serta proyeksi kebutuhan dana pensiun.
-          </p>
-        </div>
-
-        <!-- Two-Column Calculator Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
-          <!-- LEFT WHITE ROUNDED BOX -->
-          <div class="lg:col-span-7 rounded-[16px] border border-[#CCD0CF] bg-white p-6 sm:p-8 flex flex-col justify-between space-y-6">
-
-            <!-- Top Row: 2 Age Sliders Side-by-Side -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-4 border-b border-[#CCD0CF]/70">
-              <div>
-                <div class="flex items-baseline justify-between gap-2 mb-3">
-                  <label for="calcCurrentAge" class="font-helvetica text-xs sm:text-[13px] text-[#4A5C6A]">
-                    Usia Saat Ini (Kriteria: 25–46 Thn)
-                  </label>
-                  <span id="labelCurrentAge" class="font-poppins text-xs sm:text-[13px] font-bold text-[#06141B] tabular-nums shrink-0">
-                    28 Tahun
-                  </span>
-                </div>
-                <input
-                  id="calcCurrentAge"
-                  type="range"
-                  min="25"
-                  max="46"
-                  step="1"
-                  value="28"
-                  oninput="updateThesisCalculator()"
-                  class="ThesisSlider"
-                />
+            <!-- Quick Criteria Summary -->
+            <div class="mt-4 pt-4 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-600">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>Usia <strong>25–54 Tahun</strong></span>
               </div>
-
-              <div>
-                <div class="flex items-baseline justify-between gap-2 mb-3">
-                  <label for="calcTargetAge" class="font-helvetica text-xs sm:text-[13px] text-[#4A5C6A]">
-                    Target Usia Pensiun (Usia JP: 59 Thn)
-                  </label>
-                  <span id="labelTargetAge" class="font-poppins text-xs sm:text-[13px] font-bold text-[#06141B] tabular-nums shrink-0">
-                    59 Tahun
-                  </span>
-                </div>
-                <input
-                  id="calcTargetAge"
-                  type="range"
-                  min="47"
-                  max="65"
-                  step="1"
-                  value="59"
-                  oninput="updateThesisCalculator()"
-                  class="ThesisSlider"
-                />
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span><strong>Karyawan Tetap</strong> Swasta</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>Kantor di <strong>DKI Jakarta</strong></span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>Masa Kerja <strong>&ge; 1 Tahun</strong> &amp; BPJS TK</span>
               </div>
             </div>
-
-            <!-- Slider 1: Skor Financial Literacy -->
-            <div class="space-y-2.5">
-              <div class="flex items-baseline justify-between gap-2">
-                <label for="calcScoreFL" class="font-helvetica text-xs sm:text-[13px] text-[#4A5C6A]">
-                  Skor <em class="italic text-[#06141B]">Financial Literacy</em> (Sikap &amp; Perilaku)
-                </label>
-                <span id="labelScoreFL" class="font-poppins text-xs sm:text-[13px] font-bold text-[#06141B] tabular-nums">
-                  3,80 (Agak Tinggi)
-                </span>
-              </div>
-              <input
-                id="calcScoreFL"
-                type="range"
-                min="1.00"
-                max="5.00"
-                step="0.05"
-                value="3.80"
-                oninput="updateThesisCalculator()"
-                class="ThesisSlider"
-              />
-            </div>
-
-            <!-- Slider 2: Skor Future Time Perspective -->
-            <div class="space-y-2.5">
-              <div class="flex items-baseline justify-between gap-2">
-                <label for="calcScoreFTP" class="font-helvetica text-xs sm:text-[13px] text-[#4A5C6A]">
-                  Skor <em class="italic text-[#06141B]">Future Time Perspective</em>
-                </label>
-                <span id="labelScoreFTP" class="font-poppins text-xs sm:text-[13px] font-bold text-[#06141B] tabular-nums">
-                  3,90 (Agak Tinggi)
-                </span>
-              </div>
-              <input
-                id="calcScoreFTP"
-                type="range"
-                min="1.00"
-                max="5.00"
-                step="0.05"
-                value="3.90"
-                oninput="updateThesisCalculator()"
-                class="ThesisSlider"
-              />
-            </div>
-
-            <!-- Slider 3: Skor Retirement Goal Clarity -->
-            <div class="space-y-2.5">
-              <div class="flex items-baseline justify-between gap-2">
-                <label for="calcScoreRGC" class="font-helvetica text-xs sm:text-[13px] text-[#4A5C6A]">
-                  Skor <em class="italic text-[#06141B]">Retirement Goal Clarity</em> (Mediator)
-                </label>
-                <span id="labelScoreRGC" class="font-poppins text-xs sm:text-[13px] font-bold text-[#06141B] tabular-nums">
-                  4,10 (Tinggi)
-                </span>
-              </div>
-              <input
-                id="calcScoreRGC"
-                type="range"
-                min="1.00"
-                max="5.00"
-                step="0.05"
-                value="4.10"
-                oninput="updateThesisCalculator()"
-                class="ThesisSlider"
-              />
-            </div>
-
-            <!-- Bottom Input: Target Pengeluaran Hidup Bulanan Saat Pensiun (Rp) -->
-            <div class="pt-4 border-t border-[#CCD0CF]/70">
-              <label for="calcMonthlyExpense" class="block font-helvetica text-xs sm:text-[13px] text-[#4A5C6A] mb-2.5">
-                Target Pengeluaran Hidup Bulanan Saat Pensiun (Rp):
-              </label>
-              <input
-                id="calcMonthlyExpense"
-                type="number"
-                min="1000000"
-                step="500000"
-                value="8000000"
-                oninput="updateThesisCalculator()"
-                class="w-full px-4 py-3 rounded-xl border border-[#CCD0CF] bg-[#F8FAFA] font-poppins text-sm font-semibold text-[#06141B] tabular-nums focus:outline-none focus:border-[#253745]"
-              />
-
-              <!-- Quick Presets & Sync Button -->
-              <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span class="text-[#9BA8AB]">Simulasi cepat:</span>
-                  <button type="button" onclick="setCalculatorPreset('default')" class="px-2.5 py-1 rounded-lg border border-[#CCD0CF] text-[#253745] hover:bg-[#F8FAFA] font-poppins text-[11px] font-medium">
-                    Default (3,99)
-                  </button>
-                  <button type="button" onclick="setCalculatorPreset('paradoks')" class="px-2.5 py-1 rounded-lg border border-[#CCD0CF] text-[#253745] hover:bg-[#F8FAFA] font-poppins text-[11px] font-medium">
-                    Goal Clarity Rendah
-                  </button>
-                  <button type="button" onclick="setCalculatorPreset('optimal')" class="px-2.5 py-1 rounded-lg border border-[#CCD0CF] text-[#253745] hover:bg-[#F8FAFA] font-poppins text-[11px] font-medium">
-                    Siap Pensiun (4,65)
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  onclick="syncCalculatorFrom35Items()"
-                  class="font-poppins text-[11px] font-medium text-[#253745] underline hover:text-[#06141B]"
-                >
-                  ↻ Tarik Skor dari Kuesioner 35 Butir
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- RIGHT OBSIDIAN NAVY PANEL (#06141B) -->
-          <div class="lg:col-span-5 rounded-[16px] bg-[#06141B] text-white p-6 sm:p-8 flex flex-col justify-between">
-            <div class="space-y-5">
-
-              <!-- Top Row: Predicted RPB Score & Category Pill -->
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="font-poppins text-xs uppercase tracking-[0.08em] text-[#9BA8AB]">
-                    PREDIKSI SKOR RPB (SKALA 1–5)
-                  </div>
-                  <div id="calcPredRPB" class="font-poppins text-4xl sm:text-[44px] font-bold text-white mt-2 leading-none tabular-nums">
-                    3,99
-                  </div>
-                </div>
-                <span
-                  id="calcPredBadge"
-                  class="font-poppins text-xs px-4 py-1.5 rounded-full bg-[#11212D] border border-[#253745] text-[#CCD0CF] shrink-0 mt-1"
-                >
-                  Kategori: Agak Tinggi
-                </span>
-              </div>
-
-              <!-- Middle 2 Sub-Cards: Horizon Perencanaan & Setoran Rutin / Bulan -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                <div class="p-4 rounded-[12px] bg-[#11212D] border border-[#253745]">
-                  <div class="font-helvetica text-xs text-[#9BA8AB]">Horizon Perencanaan</div>
-                  <div id="calcHorizonYears" class="font-poppins text-xl sm:text-[22px] font-semibold text-white mt-1.5 tabular-nums">
-                    31 Tahun
-                  </div>
-                </div>
-
-                <div class="p-4 rounded-[12px] bg-[#11212D] border border-[#253745]">
-                  <div class="font-helvetica text-xs text-[#9BA8AB]">Setoran Rutin / Bulan</div>
-                  <div id="calcMonthlySaving" class="font-poppins text-lg sm:text-[20px] font-semibold text-white mt-1.5 tabular-nums">
-                    Rp 3.870.968
-                  </div>
-                </div>
-              </div>
-
-              <!-- Full-Width Sub-Card: Estimasi Total Dana Pensiun Mandiri -->
-              <div class="p-5 rounded-[12px] bg-[#11212D] border border-[#253745]">
-                <div class="font-helvetica text-xs text-[#9BA8AB] leading-relaxed">
-                  Estimasi Total Dana Pensiun Mandiri (Asumsi 15 Tahun Masa Pensiun):
-                </div>
-                <div id="calcTotalFund" class="font-poppins text-2xl sm:text-[28px] font-bold text-white mt-2 tabular-nums">
-                  Rp 1.440.000.000
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Dynamic CWO Model Narrative at Bottom -->
-            <p id="calcNarrativeCWO" class="font-helvetica text-xs sm:text-[13px] text-[#9BA8AB] leading-relaxed mt-6 pt-5 border-t border-[#253745]">
-              Sesuai kerangka CWO Model (Hershey et al., 2013), kejelasan tujuan pensiun (<em>Retirement Goal Clarity</em>) yang tinggi mampu mengonversi literasi keuangan dan orientasi masa depan menjadi perilaku menabung pensiun yang aktif.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================================
-         SECTION 2: DATA EMPIRIS & FENOMENA LATAR BELAKANG (BAB 1)
-    ====================================================================== -->
-    <section id="fenomena" class="py-14 lg:py-20 border-t border-[#CCD0CF]">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-        <!-- Left 4 Columns: Context & Signifikansi Penelitian -->
-        <div class="lg:col-span-4 space-y-6">
-          <div>
-            <div class="font-poppins text-xs uppercase tracking-widest text-[#253745] font-semibold">
-              Pendahuluan • Bab 1.1 – 1.5
-            </div>
-            <h2 class="font-poppins text-2xl sm:text-3xl font-bold text-[#06141B] mt-1 leading-snug">
-              Latar Belakang Masalah &amp; Signifikansi Penelitian
-            </h2>
-          </div>
-
-          <p class="font-helvetica text-sm text-[#4A5C6A] leading-relaxed">
-            Karyawan sektor swasta tidak tercakup dalam skema pensiun aparatur negara (ASN/TNI/Polri/BUMN), sehingga kecukupan dana hari tuanya bergantung pada program wajib BPJS Ketenagakerjaan dan tabungan mandiri. Namun, fleksibilitas pencairan JHT saat <em>resign</em> atau PHK menyebabkan dana hari tua sering dicairkan untuk kebutuhan jangka pendek sebelum usia pensiun.
-          </p>
-
-          <div class="p-5 rounded-2xl border border-[#CCD0CF] bg-[#F8FAFA] space-y-3 text-xs">
-            <div class="font-poppins font-bold text-[#06141B] text-sm">Signifikansi Teoritis (Subbab 1.4.1)</div>
-            <p class="text-[#4A5C6A] leading-relaxed">
-              Menguji <em>Capacity, Willingness, and Opportunity Model</em> (Hershey et al., 2013) pada konteks karyawan sektor swasta di Indonesia, menindaklanjuti rekomendasi Alfando et al. (2025) dengan menyertakan <em>future time perspective</em>, serta mengukur <em>financial literacy</em> melalui dimensi sikap dan perilaku keuangan (Potrich et al., 2015).
-            </p>
-            <div class="pt-3 border-t border-[#CCD0CF] font-poppins font-bold text-[#06141B] text-sm">Signifikansi Praktis (Subbab 1.4.2)</div>
-            <p class="text-[#4A5C6A] leading-relaxed">
-              Menjadi rujukan bagi pengelola SDM perusahaan dalam merancang program kesejahteraan karyawan dan edukasi perumusan target pensiun, serta masukan bagi regulator (OJK &amp; BPJS Ketenagakerjaan) dalam menyusun program literasi dana pensiun.
-            </p>
-          </div>
-        </div>
-
-        <!-- Right 8 Columns: Interactive Empirical Charts (Gambar 1.1 – 1.4) -->
-        <div class="lg:col-span-8 space-y-6">
-          <!-- Clean Tabs -->
-          <div class="flex flex-wrap gap-6 border-b border-[#CCD0CF] font-poppins text-xs">
-            <button type="button" onclick="switchDataTab('g11')" id="tab-g11" class="clean-tab active">
-              Gambar 1.1 • Global Pension Index 2025
-            </button>
-            <button type="button" onclick="switchDataTab('g12')" id="tab-g12" class="clean-tab">
-              Gambar 1.2 • Tren Klaim JHT (2021–2025)
-            </button>
-            <button type="button" onclick="switchDataTab('g13')" id="tab-g13" class="clean-tab">
-              Gambar 1.3 • SNLIK OJK &amp; OCBC 2025
-            </button>
-            <button type="button" onclick="switchDataTab('g14')" id="tab-g14" class="clean-tab">
-              Gambar 1.4 • Pekerja Jabodetabek
-            </button>
-          </div>
-
-          <!-- Panel Gambar 1.1 -->
-          <div id="panel-g11" class="space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h3 class="font-poppins text-lg font-bold text-[#06141B]">
-                  Skor Global Pension Index Negara ASEAN (2025)
-                </h3>
-                <p class="text-xs text-[#4A5C6A]">
-                  Sub-indeks kecukupan (<em>adequacy</em>) Indonesia berada pada skor 40,1 (Predikat D) — manfaat sistem pensiun belum cukup menopang masa tua.
-                </p>
-              </div>
-              <span class="font-poppins text-[11px] text-[#4A5C6A] bg-[#F8FAFA] px-3 py-1 rounded-lg border border-[#CCD0CF] shrink-0">
-                Sumber: Mercer &amp; CFA Institute (2025)
-              </span>
-            </div>
-            <div id="mercerBarsContainer" class="divide-y divide-[#CCD0CF] border border-[#CCD0CF] rounded-2xl overflow-hidden bg-white"></div>
-          </div>
-
-          <!-- Panel Gambar 1.2 -->
-          <div id="panel-g12" class="hidden space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h3 class="font-poppins text-lg font-bold text-[#06141B]">
-                  Jumlah Kasus Klaim Jaminan Hari Tua (JHT), 2021–2025
-                </h3>
-                <p class="text-xs text-[#4A5C6A]">
-                  Lebih dari 50% klaim JHT dipicu oleh <em>resign</em> dan 30% akibat PHK sebelum usia pensiun (Permenaker No. 4/2022).
-                </p>
-              </div>
-              <span class="font-poppins text-[11px] text-[#4A5C6A] bg-[#F8FAFA] px-3 py-1 rounded-lg border border-[#CCD0CF] shrink-0">
-                Sumber: Mediana (2025); BPJS TK (2026)
-              </span>
-            </div>
-            <div id="jhtBarsContainer" class="divide-y divide-[#CCD0CF] border border-[#CCD0CF] rounded-2xl overflow-hidden bg-white"></div>
-          </div>
-
-          <!-- Panel Gambar 1.3 -->
-          <div id="panel-g13" class="hidden space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h3 class="font-poppins text-lg font-bold text-[#06141B]">
-                  Indeks Literasi Keuangan per Sektor Jasa Keuangan (SNLIK 2025)
-                </h3>
-                <p class="text-xs text-[#4A5C6A]">
-                  Literasi Dana Pensiun hanya 27,79% dengan tingkat inklusi 5,37%, jauh tertinggal dari sektor Perbankan (65,50%).
-                </p>
-              </div>
-              <span class="font-poppins text-[11px] text-[#4A5C6A] bg-[#F8FAFA] px-3 py-1 rounded-lg border border-[#CCD0CF] shrink-0">
-                Sumber: OJK &amp; BPS (2025)
-              </span>
-            </div>
-            <div id="ojkBarsContainer" class="divide-y divide-[#CCD0CF] border border-[#CCD0CF] rounded-2xl overflow-hidden bg-white"></div>
-          </div>
-
-          <!-- Panel Gambar 1.4 -->
-          <div id="panel-g14" class="hidden space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h3 class="font-poppins text-lg font-bold text-[#06141B]">
-                  Persentase Buruh/Karyawan/Pegawai terhadap Penduduk Bekerja di Jabodetabek (Agustus 2025)
-                </h3>
-                <p class="text-xs text-[#4A5C6A]">
-                  Mayoritas penduduk bekerja di 13 kota/kabupaten Jabodetabek berstatus karyawan (50,29% – 64,07%), dengan 3,22 juta pekerja formal di DKI Jakarta.
-                </p>
-              </div>
-              <span class="font-poppins text-[11px] text-[#4A5C6A] bg-[#F8FAFA] px-3 py-1 rounded-lg border border-[#CCD0CF] shrink-0">
-                Sumber: BPS DKI Jakarta, Jabar, &amp; Banten (2025)
-              </span>
-            </div>
-            <div id="jabodetabekBarsContainer" class="divide-y divide-[#CCD0CF] border border-[#CCD0CF] rounded-2xl overflow-hidden bg-white px-2"></div>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- =====================================================================
-         SECTION 3: MODEL PENELITIAN & INSPEKTOR 6 HIPOTESIS (BAB 2.4 – 2.5)
-    ====================================================================== -->
-    <section id="model-hipotesis" class="py-14 lg:py-20 border-t border-[#CCD0CF]">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+  <!-- SECTION 1: BAB 1 LATAR BELAKANG & FAKTA EMPIRIS PER VARIABEL -->
+  <section id="fenomena" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-xs font-extrabold uppercase tracking-widest text-blue-700">Bab 1 • Pendahuluan &amp; Factual Problem</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+        Ketersediaan BPJS Ketenagakerjaan &amp; Fakta Masalah per Variabel Penelitian
+      </h2>
+      <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+        Salah satu instrumen dasar untuk menilai kesiapan menghadapi masa pensiun pada pekerja sektor formal adalah ketersediaan dan kepesertaan dalam program jaminan sosial wajib <strong>BPJS Ketenagakerjaan</strong> (Jaminan Hari Tua/JHT dan Jaminan Pensiun/JP sesuai UU No. 24 Tahun 2011). Namun, data empiris menunjukkan adanya kesenjangan struktural dan keperilakuan pada keempat variabel penelitian:
+      </p>
+    </div>
+
+    <!-- 4 Empirical Pillar Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+      <!-- Card 1 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
         <div>
-          <div class="font-poppins text-xs uppercase tracking-widest text-[#253745] font-semibold">
-            Model Struktural &amp; Hipotesis • Bab 2.4 – 2.5
-          </div>
-          <h2 class="font-poppins text-2xl sm:text-3xl font-bold text-[#06141B] mt-1">
-            Gambar 2.1 Hubungan Antar Variabel &amp; Pengujian H1–H6
-          </h2>
+          <span class="px-2.5 py-1 rounded-md bg-rose-50 text-rose-700 font-bold text-xs">Sistem Pensiun &amp; Kecukupan</span>
+          <p class="text-3xl font-extrabold text-slate-900 mt-3">40,1 <span class="text-base font-bold text-rose-600">(Predikat D)</span></p>
+          <p class="text-xs font-semibold text-slate-700 mt-1">Sub-Indeks Kecukupan (<span class="italic">Adequacy</span>) Indonesia</p>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Pada <span class="italic">Mercer CFA Institute Global Pension Index 2025</span>, skor keseluruhan Indonesia tercatat <strong>51,0 (Predikat C)</strong>—di bawah Singapura (80,8), Malaysia (60,6), dan Vietnam (53,7)—dengan manfaat yang belum memadai untuk menopang hidup masa tua.
+          </p>
         </div>
-
-        <div class="flex flex-wrap gap-1.5 p-1.5 rounded-xl border border-[#CCD0CF] bg-[#F8FAFA] font-poppins text-xs">
-          <button type="button" onclick="selectHypothesis('H1')" id="pill-H1" class="pill-switch active px-3.5 py-1.5 rounded-lg font-semibold">H1</button>
-          <button type="button" onclick="selectHypothesis('H2')" id="pill-H2" class="pill-switch px-3.5 py-1.5 rounded-lg font-semibold">H2</button>
-          <button type="button" onclick="selectHypothesis('H3')" id="pill-H3" class="pill-switch px-3.5 py-1.5 rounded-lg font-semibold">H3</button>
-          <button type="button" onclick="selectHypothesis('H4')" id="pill-H4" class="pill-switch px-3.5 py-1.5 rounded-lg font-semibold">H4</button>
-          <button type="button" onclick="selectHypothesis('H5')" id="pill-H5" class="pill-switch px-3.5 py-1.5 rounded-lg font-semibold">H5 (Mediasi)</button>
-          <button type="button" onclick="selectHypothesis('H6')" id="pill-H6" class="pill-switch px-3.5 py-1.5 rounded-lg font-semibold">H6 (Mediasi)</button>
-        </div>
+        <p class="text-[11px] font-semibold text-slate-400 mt-4 pt-3 border-t border-slate-100">Sumber: Mercer &amp; CFA Institute (2025)</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <!-- Interactive Structural Model Diagram (Gambar 2.1) -->
-        <div class="lg:col-span-7 p-6 sm:p-8 rounded-2xl border border-[#CCD0CF] bg-white">
-          <div class="flex items-center justify-between text-xs text-[#4A5C6A] mb-4 font-poppins">
-            <span>Klik jalur H1–H6 untuk memeriksa koefisien studi terdahulu</span>
-            <span>Garis Utuh: Langsung • Putus-putus: Mediasi</span>
-          </div>
+      <!-- Card 2 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="px-2.5 py-1 rounded-md bg-amber-50 text-amber-800 font-bold text-xs">Retirement Planning Behavior</span>
+          <p class="text-3xl font-extrabold text-slate-900 mt-3">5,37% <span class="text-base font-bold text-amber-600">Inklusi</span></p>
+          <p class="text-xs font-semibold text-slate-700 mt-1">Inklusi Dana Pensiun vs 80,51% Nasional</p>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Dari 48,65 juta peserta aktif BPJS Ketenagakerjaan (27,41 juta penerima upah), masih ada <strong>20,66 juta peserta nonaktif</strong>. Proporsi pekerja yang aktif menyisihkan dana pada tabungan pensiun sukarela di luar program wajib masih sangat rendah.
+          </p>
+        </div>
+        <p class="text-[11px] font-semibold text-slate-400 mt-4 pt-3 border-t border-slate-100">Sumber: BPJS TK (2026); SNLIK OJK &amp; BPS (2025)</p>
+      </div>
 
-          <svg viewBox="0 0 760 400" class="w-full h-auto select-none">
+      <!-- Card 3 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs">Future Time Perspective</span>
+          <p class="text-3xl font-extrabold text-slate-900 mt-3">3,90 Juta <span class="text-base font-bold text-indigo-600">Klaim</span></p>
+          <p class="text-xs font-semibold text-slate-700 mt-1">Pencairan JHT Rp57,25 Triliun (67,61% Klaim)</p>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Lebih dari <strong>50% klaim JHT disebabkan oleh <span class="italic">resign</span></strong> dan <strong>30% akibat PHK</strong> sebelum usia pensiun. BRIN menilai pekerja memandang JHT sebagai dana penyangga jangka pendek, mencerminkan lemahnya orientasi masa depan.
+          </p>
+        </div>
+        <p class="text-[11px] font-semibold text-slate-400 mt-4 pt-3 border-t border-slate-100">Sumber: Mediana (2025); BPJS TK (2026)</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 font-bold text-xs">Financial Literacy &amp; Goal Clarity</span>
+          <p class="text-3xl font-extrabold text-slate-900 mt-3">89% <span class="text-base font-bold text-emerald-600">vs 29%</span></p>
+          <p class="text-xs font-semibold text-slate-700 mt-1">Rutin Menabung (89%) vs Punya Dana Pensiun (29%)</p>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Literasi dana pensiun hanya <strong>27,79%</strong> (vs perbankan 65,50%). Meski 89% pekerja kota besar rutin menabung, hanya 29% yang menyiapkan dana pensiun karena ketiadaan sasaran pensiun yang spesifik (<span class="italic">retirement goal clarity</span>).
+          </p>
+        </div>
+        <p class="text-[11px] font-semibold text-slate-400 mt-4 pt-3 border-t border-slate-100">Sumber: OCBC Financial Fitness Index (2025)</p>
+      </div>
+    </div>
+
+    <!-- Subjek DKI Jakarta & Timeframe 10-15 Tahun Banner -->
+    <div class="mt-6 bg-navy-900 text-white rounded-2xl p-6 sm:p-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-yellow-400">Fokus Lokasi &amp; Homogenitas Populasi</span>
+        <h3 class="text-xl font-bold mt-1">Mengapa Karyawan Tetap Sektor Swasta di DKI Jakarta?</h3>
+        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+          DKI Jakarta merupakan pusat konsentrasi pekerja formal terbesar di Indonesia dengan <strong>3.216.873 pekerja formal</strong> (3.011.329 buruh/karyawan/pegawai dan 205.544 pemberi kerja dibantu buruh tetap), di mana karyawan mendominasi <strong>58,03% (Jakarta Timur) hingga 61,08% (Jakarta Pusat)</strong>. Pembatasan spesifik di Provinsi DKI Jakarta menjaga <strong>homogenitas area penelitian</strong> dari sisi standar UMP, biaya hidup metropolitan, dan akses institusi keuangan.
+        </p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-yellow-300 uppercase">Financial Planning Timeframe: 10–15 Tahun</span>
+          <span class="px-2 py-0.5 rounded bg-yellow-400/20 text-yellow-300 text-[11px] font-bold">PP No. 45/2015</span>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Usia pensiun Jaminan Pensiun BPJS Ketenagakerjaan ditetapkan <strong>59 tahun pada 2026</strong> dan meningkat bertahap hingga <strong>65 tahun</strong>. Pembagian 3 kohort usia (<strong>25–34, 35–44, dan 45–54 tahun @150 responden</strong>) memastikan kelompok paling senior sekalipun (45–54 tahun) masih berada dalam jendela perencanaan keuangan ideal <strong>10–15 tahun</strong> menuju usia pensiun.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: BAB 2 KERANGKA TEORI, MODEL PENELITIAN & 7 HIPOTESIS -->
+  <section id="teori" class="py-14 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-blue-700">Bab 2 • Kerangka Teori &amp; Hipotesis</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+          Integrasi <span class="italic">CWO Model</span> &amp; <span class="italic">Image Theory</span> dalam 7 Hipotesis Penelitian
+        </h2>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+          Penelitian ini mengintegrasikan <span class="italic font-semibold">Capacity, Willingness, and Opportunity Model</span> (Hershey et al., 2013) dan <span class="italic font-semibold">Image Theory</span> (Beach &amp; Mitchell, 1987; Beach, 1998) untuk mengisi celah penelitian Wasiuzzaman et al. (2026) dan Alfando et al. (2025).
+        </p>
+      </div>
+
+      <!-- Visual Structural Model Diagram (SVG) -->
+      <div class="mt-8 bg-slate-50 rounded-2xl p-6 border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Gambar 2.1 Model Struktural Penelitian (H1 – H7)</h3>
+          <div class="flex items-center gap-4 text-xs text-slate-600">
+            <span class="flex items-center gap-1.5"><span class="w-5 h-0.5 bg-slate-900 inline-block"></span> Pengaruh Langsung (H1–H5)</span>
+            <span class="flex items-center gap-1.5"><span class="w-5 h-0.5 border-b-2 border-dashed border-blue-600 inline-block"></span> Pengaruh Mediasi (H6–H7)</span>
+          </div>
+        </div>
+
+        <!-- Responsive SVG Diagram matching Gambar 2.1 -->
+        <div class="overflow-x-auto">
+          <svg viewBox="0 0 920 380" class="w-full min-w-[680px] h-auto mx-auto">
             <defs>
-              <marker id="arrowSolid" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path>
+              <marker id="arrowSolid" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                <path d="M0,1 L9,5 L0,9 Z" fill="#0F172A" />
+              </marker>
+              <marker id="arrowDash" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                <path d="M0,1 L9,5 L0,9 Z" fill="#2563EB" />
               </marker>
             </defs>
 
-            <!-- H4 Direct Top Path: FTP -> RPB -->
-            <g id="svg-path-H4" onclick="selectHypothesis('H4')" class="cursor-pointer transition-opacity" style="color: #9BA8AB; opacity: 0.35;">
-              <path d="M 210 75 L 210 38 L 620 38 L 620 140" fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#arrowSolid)"></path>
-              <rect x="395" y="22" width="44" height="24" rx="6" fill="#06141B"></rect>
-              <text x="417" y="38" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold">H4</text>
-            </g>
+            <!-- Exogenous Box 1: Future Time Perspective -->
+            <rect x="30" y="45" width="210" height="95" rx="10" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+            <text x="135" y="82" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Future Time</text>
+            <text x="135" y="104" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Perspective</text>
+            <text x="135" y="125" text-anchor="middle" font-size="10" fill="#475569">Capacity / Self-Image (5 Indikator)</text>
 
-            <!-- H1 Direct Path: FTP -> RGC -->
-            <g id="svg-path-H1" onclick="selectHypothesis('H1')" class="cursor-pointer transition-opacity" style="color: #06141B; opacity: 1;">
-              <path d="M 210 120 L 290 190" fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#arrowSolid)"></path>
-              <rect x="225" y="142" width="40" height="22" rx="6" fill="#06141B"></rect>
-              <text x="245" y="157" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold">H1</text>
-            </g>
+            <!-- Exogenous Box 2: Financial Literacy -->
+            <rect x="30" y="240" width="210" height="95" rx="10" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+            <text x="135" y="277" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Financial</text>
+            <text x="135" y="299" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Literacy</text>
+            <text x="135" y="320" text-anchor="middle" font-size="10" fill="#475569">Attitude &amp; Behavior (12 Indikator)</text>
 
-            <!-- H2 Direct Path: FL -> RGC -->
-            <g id="svg-path-H2" onclick="selectHypothesis('H2')" class="cursor-pointer transition-opacity" style="color: #9BA8AB; opacity: 0.35;">
-              <path d="M 210 295 L 290 225" fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#arrowSolid)"></path>
-              <rect x="225" y="250" width="40" height="22" rx="6" fill="#06141B"></rect>
-              <text x="245" y="265" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold">H2</text>
-            </g>
+            <!-- Mediator Box: Retirement Goal Clarity -->
+            <rect x="355" y="142" width="210" height="95" rx="10" fill="#FEF9C3" stroke="#0F172A" stroke-width="2"/>
+            <text x="460" y="179" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Retirement Goal</text>
+            <text x="460" y="201" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Clarity</text>
+            <text x="460" y="222" text-anchor="middle" font-size="10" fill="#854D0E">Willingness / Trajectory Image (5 Indikator)</text>
 
-            <!-- H3 Direct Path: RGC -> RPB -->
-            <g id="svg-path-H3" onclick="selectHypothesis('H3')" class="cursor-pointer transition-opacity" style="color: #9BA8AB; opacity: 0.35;">
-              <path d="M 475 205 L 545 205" fill="none" stroke="currentColor" stroke-width="2.5" marker-end="url(#arrowSolid)"></path>
-              <rect x="490" y="175" width="40" height="22" rx="6" fill="#06141B"></rect>
-              <text x="510" y="190" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold">H3</text>
-            </g>
+            <!-- Endogenous Box: Retirement Planning Behavior -->
+            <rect x="680" y="142" width="210" height="95" rx="10" fill="#EFF6FF" stroke="#0F172A" stroke-width="2"/>
+            <text x="785" y="172" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Retirement</text>
+            <text x="785" y="194" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#0F172A">Planning Behavior</text>
+            <text x="785" y="218" text-anchor="middle" font-size="10" fill="#1E40AF">Action Image (9 Indikator • BPJS TK)</text>
 
-            <!-- H5 Mediation Dashed Path: FTP -> RGC -> RPB -->
-            <g id="svg-path-H5" onclick="selectHypothesis('H5')" class="cursor-pointer transition-opacity" style="color: #9BA8AB; opacity: 0.35;">
-              <path d="M 210 95 L 382 145 L 545 178" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrowSolid)"></path>
-              <rect x="330" y="102" width="44" height="22" rx="6" fill="#253745"></rect>
-              <text x="352" y="117" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold">H5</text>
-            </g>
+            <!-- H1: FTP -> RGC -->
+            <path d="M135,140 L135,175 L348,175" fill="none" stroke="#0F172A" stroke-width="2" marker-end="url(#arrowSolid)"/>
+            <text x="112" y="168" font-size="13" font-weight="800" fill="#0F172A">H1</text>
 
-            <!-- H6 Mediation Dashed Path: FL -> RGC -> RPB -->
-            <g id="svg-path-H6" onclick="selectHypothesis('H6')" class="cursor-pointer transition-opacity" style="color: #9BA8AB; opacity: 0.35;">
-              <path d="M 210 320 L 382 265 L 545 232" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrowSolid)"></path>
-              <rect x="330" y="285" width="44" height="22" rx="6" fill="#253745"></rect>
-              <text x="352" y="300" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold">H6</text>
-            </g>
+            <!-- H2: FL -> RGC -->
+            <path d="M135,240 L135,205 L348,205" fill="none" stroke="#0F172A" stroke-width="2" marker-end="url(#arrowSolid)"/>
+            <text x="112" y="225" font-size="13" font-weight="800" fill="#0F172A">H2</text>
 
-            <!-- Box 1: Future Time Perspective -->
-            <g>
-              <rect x="20" y="65" width="190" height="80" rx="12" fill="#F8FAFA" stroke="#06141B" stroke-width="1.8"></rect>
-              <text x="115" y="100" text-anchor="middle" fill="#06141B" class="font-poppins text-xs font-bold italic">Future Time</text>
-              <text x="115" y="118" text-anchor="middle" fill="#06141B" class="font-poppins text-xs font-bold italic">Perspective</text>
-              <text x="115" y="135" text-anchor="middle" fill="#4A5C6A" class="font-helvetica text-[10px]">5 Indikator (Eksogen)</text>
-            </g>
+            <!-- H3: RGC -> RPB -->
+            <line x1="565" y1="190" x2="672" y2="190" stroke="#0F172A" stroke-width="2" marker-end="url(#arrowSolid)"/>
+            <text x="618" y="182" text-anchor="middle" font-size="13" font-weight="800" fill="#0F172A">H3</text>
 
-            <!-- Box 2: Financial Literacy -->
-            <g>
-              <rect x="20" y="265" width="190" height="85" rx="12" fill="#F8FAFA" stroke="#06141B" stroke-width="1.8"></rect>
-              <text x="115" y="298" text-anchor="middle" fill="#06141B" class="font-poppins text-xs font-bold italic">Financial Literacy</text>
-              <text x="115" y="316" text-anchor="middle" fill="#253745" class="font-helvetica text-[10px]">Attitude (6) &amp; Behavior (6)</text>
-              <text x="115" y="334" text-anchor="middle" fill="#4A5C6A" class="font-helvetica text-[10px]">15 Butir (Eksogen)</text>
-            </g>
+            <!-- H4: FTP -> RPB (Top Direct) -->
+            <path d="M240,65 L785,65 L785,134" fill="none" stroke="#0F172A" stroke-width="2" marker-end="url(#arrowSolid)"/>
+            <text x="510" y="54" text-anchor="middle" font-size="13" font-weight="800" fill="#0F172A">H4</text>
 
-            <!-- Box 3: Retirement Goal Clarity (Mediator) -->
-            <g>
-              <rect x="292" y="155" width="183" height="100" rx="12" fill="#06141B"></rect>
-              <text x="383" y="195" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold italic">Retirement Goal</text>
-              <text x="383" y="213" text-anchor="middle" fill="#FFFFFF" class="font-poppins text-xs font-bold italic">Clarity</text>
-              <text x="383" y="235" text-anchor="middle" fill="#9BA8AB" class="font-helvetica text-[10px]">5 Indikator (Mediasi)</text>
-            </g>
+            <!-- H5: FL -> RPB (Bottom Direct) -->
+            <path d="M240,315 L785,315 L785,245" fill="none" stroke="#0F172A" stroke-width="2" marker-end="url(#arrowSolid)"/>
+            <text x="510" y="338" text-anchor="middle" font-size="13" font-weight="800" fill="#0F172A">H5</text>
 
-            <!-- Box 4: Retirement Planning Behavior (Endogen) -->
-            <g>
-              <rect x="548" y="145" width="192" height="120" rx="12" fill="#F8FAFA" stroke="#06141B" stroke-width="1.8"></rect>
-              <text x="644" y="188" text-anchor="middle" fill="#06141B" class="font-poppins text-xs font-bold italic">Retirement</text>
-              <text x="644" y="206" text-anchor="middle" fill="#06141B" class="font-poppins text-xs font-bold italic">Planning</text>
-              <text x="644" y="224" text-anchor="middle" fill="#06141B" class="font-poppins text-xs font-bold italic">Behavior</text>
-              <text x="644" y="245" text-anchor="middle" fill="#4A5C6A" class="font-helvetica text-[10px]">9 Indikator / 10 Butir (Endogen)</text>
-            </g>
+            <!-- H6: Mediation FTP -> RGC -> RPB -->
+            <line x1="240" y1="78" x2="455" y2="142" stroke="#2563EB" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="565" y1="162" x2="672" y2="162" stroke="#2563EB" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowDash)"/>
+            <text x="385" y="110" font-size="13" font-weight="800" fill="#2563EB">H6</text>
+
+            <!-- H7: Mediation FL -> RGC -> RPB -->
+            <line x1="240" y1="300" x2="455" y2="237" stroke="#2563EB" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="565" y1="218" x2="672" y2="218" stroke="#2563EB" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowDash)"/>
+            <text x="385" y="280" font-size="13" font-weight="800" fill="#2563EB">H7</text>
           </svg>
+        </div>
+      </div>
 
-          <div class="mt-3 text-center font-poppins text-[11px] text-[#9BA8AB]">
-            Gambar 2.1 Hubungan Antar Variabel • Sumber: Hasil Olahan Peneliti (2026)
+      <!-- 7 Hypotheses Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <span class="px-2 py-0.5 rounded bg-slate-900 text-yellow-400 font-bold text-xs">H1 • Langsung</span>
+          <p class="text-xs font-bold text-slate-900 mt-2"><span class="italic">Future Time Perspective</span> &rarr; <span class="italic">Retirement Goal Clarity</span></p>
+          <p class="text-[11px] text-slate-500 mt-1">Didukung Wasiuzzaman et al. (2026) (&beta;=0,587; t=13,562) &amp; Tomar et al. (2021) (&beta;=0,522).</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <span class="px-2 py-0.5 rounded bg-slate-900 text-yellow-400 font-bold text-xs">H2 • Langsung</span>
+          <p class="text-xs font-bold text-slate-900 mt-2"><span class="italic">Financial Literacy</span> &rarr; <span class="italic">Retirement Goal Clarity</span></p>
+          <p class="text-[11px] text-slate-500 mt-1">Didukung Alfando et al. (2025) (&beta;=0,465; t=7,425) &amp; Wasiuzzaman et al. (2026) (&beta;=0,115).</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <span class="px-2 py-0.5 rounded bg-slate-900 text-yellow-400 font-bold text-xs">H3 • Langsung</span>
+          <p class="text-xs font-bold text-slate-900 mt-2"><span class="italic">Retirement Goal Clarity</span> &rarr; <span class="italic">Retirement Planning Behavior</span></p>
+          <p class="text-[11px] text-slate-500 mt-1">Jalur terkuat pada Wasiuzzaman et al. (2026) (&beta;=0,680), Tomar et al. (2021) (&beta;=0,680), &amp; Alfando et al. (2025) (&beta;=0,415).</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <span class="px-2 py-0.5 rounded bg-slate-900 text-yellow-400 font-bold text-xs">H4 • Langsung</span>
+          <p class="text-xs font-bold text-slate-900 mt-2"><span class="italic">Future Time Perspective</span> &rarr; <span class="italic">Retirement Planning Behavior</span></p>
+          <p class="text-[11px] text-slate-500 mt-1">Menguji bukti Kimiyagahlam et al. (2019) di Malaysia (&beta;=0,218) vs Wasiuzzaman et al. (2026).</p>
+        </div>
+        <div class="p-4 rounded-xl border-2 border-yellow-400 bg-yellow-50/40">
+          <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold text-xs">H5 • Jalur Baru</span>
+          <p class="text-xs font-bold text-slate-900 mt-2"><span class="italic">Financial Literacy</span> &rarr; <span class="italic">Retirement Planning Behavior</span></p>
+          <p class="text-[11px] text-slate-600 mt-1">Didukung Alfando et al. (2025), Wasiuzzaman et al. (2026) (&beta;=0,082; p&lt;0,05), &amp; Kimiyagahlam et al. (2019).</p>
+        </div>
+        <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/40">
+          <span class="px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-xs">H6 • Mediasi</span>
+          <p class="text-xs font-bold text-slate-900 mt-2">Mediasi RGC pada FTP &rarr; RPB</p>
+          <p class="text-[11px] text-slate-600 mt-1">Didukung Wasiuzzaman et al. (2026) (<span class="italic">indirect</span> &beta;=0,399; t=10,003) &amp; Tomar et al. (2021) (&beta;=0,355).</p>
+        </div>
+        <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 sm:col-span-2">
+          <span class="px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-xs">H7 • Mediasi</span>
+          <p class="text-xs font-bold text-slate-900 mt-2">Mediasi <span class="italic">Retirement Goal Clarity</span> pada <span class="italic">Financial Literacy</span> &rarr; <span class="italic">Retirement Planning Behavior</span></p>
+          <p class="text-[11px] text-slate-600 mt-1">Didukung Alfando et al. (2025) (<span class="italic">indirect</span> &beta;=0,193; t=4,163), Wasiuzzaman et al. (2026) (&beta;=0,078; t=2,557), serta Yeung et al. (2023) di Hong Kong.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: BAB 3 METODE PENELITIAN & KUOTA SAMPEL 450 RESPONDEN -->
+  <section id="metode" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-xs font-extrabold uppercase tracking-widest text-blue-700">Bab 3 • Metode Penelitian &amp; Desain Sampel</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+        <span class="italic">Quota Purposive Sampling</span> (450 Responden DKI Jakarta) &amp; Evaluasi PLS-SEM
+      </h2>
+      <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+        Mengacu pada Hair et al. (2010; 2019), batas minimum sampel model dengan 31 indikator adalah 155–310 responden. Untuk menjamin kekuatan statistik dan keterwakilan berimbang pada setiap kohort siklus karier, ditetapkan kuota <strong>150 responden per kelompok usia (Total = 450 responden valid)</strong>.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6 mt-8">
+      <!-- Age Cohort Quota Table -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <h3 class="text-base font-extrabold text-slate-900">Alokasi Kuota 3 Kelompok Usia</h3>
+        <p class="text-xs text-slate-500 mt-1">Menjaga variasi <span class="italic">future time perspective</span> (Kooij et al., 2018) dan <span class="italic">timeframe</span> 10–15 tahun menuju pensiun.</p>
+        <div class="mt-4 space-y-3">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-extrabold text-slate-900">Kohort 1: Usia 25–34 Tahun</p>
+              <p class="text-[11px] text-slate-500">Fase Karier Awal &amp; Kemandirian Finansial</p>
+            </div>
+            <span class="px-3 py-1 rounded-lg bg-navy-900 text-yellow-400 font-extrabold text-xs">150 Orang</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-extrabold text-slate-900">Kohort 2: Usia 35–44 Tahun</p>
+              <p class="text-[11px] text-slate-500">Fase Konsolidasi Karier &amp; Keluarga</p>
+            </div>
+            <span class="px-3 py-1 rounded-lg bg-navy-900 text-yellow-400 font-extrabold text-xs">150 Orang</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-extrabold text-slate-900">Kohort 3: Usia 45–54 Tahun</p>
+              <p class="text-[11px] text-slate-500">Horizon Krusial 10–15 Tahun Menuju Pensiun</p>
+            </div>
+            <span class="px-3 py-1 rounded-lg bg-navy-900 text-yellow-400 font-extrabold text-xs">150 Orang</span>
           </div>
         </div>
-
-        <!-- Hypothesis Inspector Card -->
-        <div class="lg:col-span-5" id="hypothesisInspector"></div>
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-900">
+          <span>Total Keseluruhan Sampel DKI Jakarta</span>
+          <span class="text-blue-700 text-sm">450 Responden</span>
+        </div>
       </div>
-    </section>
 
-    <!-- =====================================================================
-         SECTION 4: TINJAUAN PUSTAKA & KERANGKA TEORI (BAB 2.1 – 2.2)
-    ====================================================================== -->
-    <section id="tinjauan-pustaka" class="py-14 lg:py-20 border-t border-[#CCD0CF] space-y-12">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <!-- Pre-test vs Main Test -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <h3 class="text-base font-extrabold text-slate-900">Tahap Uji Instrumen &amp; <span class="italic">Outer Model</span></h3>
+        <p class="text-xs text-slate-500 mt-1">Dua tahap validasi instrumen sebelum pengujian hipotesis struktural.</p>
+        <div class="mt-4 space-y-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200">
+            <p class="font-bold text-amber-900">1. Tahap <span class="italic">Pre-test</span> (n = 30 Responden Jakarta)</p>
+            <ul class="mt-1.5 space-y-1 text-slate-700 list-disc list-inside">
+              <li><strong>Validitas:</strong> <span class="italic">Corrected Item-Total Correlation</span> &gt; 0,361 (df = 28; &alpha; = 5% dua sisi).</li>
+              <li><strong>Reliabilitas:</strong> <span class="italic">Cronbach's Alpha</span> &gt; 0,60 (Hair et al., 2019; Malhotra, 2020).</li>
+            </ul>
+          </div>
+          <div class="p-3.5 rounded-xl bg-blue-50/60 border border-blue-200">
+            <p class="font-bold text-blue-900">2. Evaluasi <span class="italic">Outer Model</span> Data Utama (n = 450)</p>
+            <ul class="mt-1.5 space-y-1 text-slate-700 list-disc list-inside">
+              <li><strong>CMV Check:</strong> <span class="italic">Harman's Single-Factor Test</span> &lt; 50% varians.</li>
+              <li><strong>Reliabilitas Indikator:</strong> <span class="italic">Outer Loading</span> &gt; 0,708.</li>
+              <li><strong>Konsistensi Internal:</strong> <span class="italic">Cronbach's Alpha</span> &amp; CR &gt; 0,70.</li>
+              <li><strong>Validitas Konvergen &amp; Diskriminan:</strong> AVE &gt; 0,50, <span class="italic">Fornell-Larcker</span>, &amp; HTMT &lt; 0,90.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inner Model & Mediation -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <h3 class="text-base font-extrabold text-slate-900">Evaluasi <span class="italic">Inner Model</span> &amp; Uji Mediasi</h3>
+        <p class="text-xs text-slate-500 mt-1">Prosedur <span class="italic">bootstrapping</span> 5.000 <span class="italic">subsample</span> pada SmartPLS (&alpha; = 5%).</p>
+        <ul class="mt-4 space-y-2.5 text-xs text-slate-700">
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-blue-700">•</span>
+            <span><strong>Multikolinearitas (VIF):</strong> Bebas multikolinearitas jika VIF &lt; 5 (ambang ketat &lt; 3,3).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-blue-700">•</span>
+            <span><strong>Kriteria Signifikansi Hipotesis:</strong> Koefisien jalur bernilai positif, <span class="italic">t-statistic</span> &gt; 1,96, dan <span class="italic">p-value</span> &lt; 0,05.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-blue-700">•</span>
+            <span><strong>Kualitas &amp; Kecocokan Model:</strong> Koefisien determinasi R&sup2; (0,25 lemah; 0,50 sedang; 0,75 kuat), <span class="italic">Effect Size</span> f&sup2; (0,02; 0,15; 0,35), <span class="italic">Predictive Relevance</span> Q&sup2; &gt; 0, dan SRMR &lt; 0,08.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-blue-700">•</span>
+            <span><strong>Klasifikasi Mediasi (H6 &amp; H7):</strong> Membandingkan signifikansi <span class="italic">specific indirect effect</span> (H6, H7) dengan jalur langsungnya (H4, H5) untuk menentukan <span class="italic">full mediation</span> atau <span class="italic">partial mediation</span>.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: DAFTAR INSTRUMEN KUESIONER BILINGUAL (READ-ONLY VIEWER) -->
+  <section id="instrumen" class="py-14 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div class="font-poppins text-xs uppercase tracking-widest text-[#253745] font-semibold">
-            Tinjauan Pustaka • Tabel 2.1 (Bab 2.1)
-          </div>
-          <h2 class="font-poppins text-2xl sm:text-3xl font-bold text-[#06141B] mt-1">
-            Matriks Perbandingan 5 Penelitian Terdahulu &amp; Posisi Penelitian
+          <p class="text-xs font-extrabold uppercase tracking-widest text-blue-700">Lampiran 1 • Dokumentasi Instrumen Final</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+            Daftar 35 Butir Pernyataan Kuesioner (Bilingual ID &amp; <span class="italic">Original Indicator</span>)
           </h2>
+          <p class="text-sm text-slate-600 mt-1">
+            Seluruh butir pernyataan disajikan dalam Bahasa Indonesia beserta kalimat asli (<span class="italic">original indicator</span>) dari jurnal rujukan pada <span class="italic">help text</span> Google Form.
+          </p>
         </div>
 
-        <div class="flex flex-wrap gap-1.5 p-1.5 rounded-xl border border-[#CCD0CF] bg-[#F8FAFA] font-poppins text-xs">
-          <button type="button" onclick="filterLit('all')" id="lit-all" class="pill-switch active px-3.5 py-1.5 rounded-lg font-medium">Semua (6)</button>
-          <button type="button" onclick="filterLit('utama')" id="lit-utama" class="pill-switch px-3.5 py-1.5 rounded-lg font-medium">Acuan Utama (2)</button>
-          <button type="button" onclick="filterLit('pendukung')" id="lit-pendukung" class="pill-switch px-3.5 py-1.5 rounded-lg font-medium">Pendukung (3)</button>
-          <button type="button" onclick="filterLit('tavi')" id="lit-tavi" class="pill-switch px-3.5 py-1.5 rounded-lg font-medium">Skripsi Ini (2026)</button>
+        <!-- Variable Filter Tabs -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterItems('ALL')" id="tab-ALL" class="tab-btn active px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-bold transition">
+            Semua (35 Butir)
+          </button>
+          <button onclick="filterItems('FL')" id="tab-FL" class="tab-btn px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-100 transition">
+            Financial Literacy (15)
+          </button>
+          <button onclick="filterItems('FTP')" id="tab-FTP" class="tab-btn px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-100 transition">
+            Future Time Perspective (5)
+          </button>
+          <button onclick="filterItems('RGC')" id="tab-RGC" class="tab-btn px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-100 transition">
+            Retirement Goal Clarity (5)
+          </button>
+          <button onclick="filterItems('RPB')" id="tab-RPB" class="tab-btn px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-100 transition">
+            Retirement Planning Behavior (10)
+          </button>
         </div>
       </div>
 
-      <div class="overflow-x-auto border border-[#CCD0CF] rounded-2xl bg-white p-4 sm:p-6">
+      <!-- Table of 35 Items -->
+      <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="border-b border-[#CCD0CF] font-poppins text-xs uppercase tracking-wider text-[#4A5C6A]">
-              <th class="pb-3 pr-6 w-1/4">Peneliti &amp; Judul</th>
-              <th class="pb-3 px-4 w-1/4">Variabel Penelitian</th>
-              <th class="pb-3 px-4 w-1/5">Metode &amp; Sampel</th>
-              <th class="pb-3 pl-4">Temuan Kunci &amp; Relevansi</th>
+            <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+              <th class="py-3.5 px-4 w-16">No</th>
+              <th class="py-3.5 px-4 w-48">Variabel / Dimensi</th>
+              <th class="py-3.5 px-4">Pernyataan Bahasa Indonesia &amp; <span class="italic text-yellow-300">Original Indicator</span> Jurnal</th>
             </tr>
           </thead>
-          <tbody id="literatureTableBody" class="divide-y divide-[#CCD0CF] text-xs"></tbody>
+          <tbody id="instrumentTableBody" class="divide-y divide-slate-200 text-xs sm:text-sm bg-white">
+            <!-- Populated by JS -->
+          </tbody>
         </table>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- =====================================================================
-         SECTION 5: METODE PENELITIAN & EVALUASI PLS-SEM (BAB 3)
-    ====================================================================== -->
-    <section id="metode" class="py-14 lg:py-20 border-t border-[#CCD0CF]">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+  <!-- SECTION 5: PORTAL KUESIONER RESMI & BITLY QR CODE (REPLACING SIMULATION) -->
+  <section id="kuesioner" class="py-16 hero-gradient text-white border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="px-3.5 py-1 rounded-full bg-yellow-400/20 border border-yellow-400/40 text-yellow-300 text-xs font-bold uppercase tracking-wider">
+          Portal Partisipasi Responden • FIA UI 2026
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold mt-3">
+          Berpartisipasi dalam Kuesioner Penelitian
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
+          Kuesioner resmi disebarkan melalui platform Google Form. Apabila Anda memenuhi 5 kriteria responden di bawah ini, silakan klik tautan resmi atau pindai kode QR Bitly untuk mulai mengisi kuesioner.
+        </p>
+      </div>
 
-        <!-- Left 5 Cols: Purposive Sampling Screening Simulator -->
-        <div class="lg:col-span-5 p-6 sm:p-8 rounded-2xl border border-[#CCD0CF] bg-[#F8FAFA]">
-          <div class="font-poppins text-xs uppercase tracking-widest text-[#253745] font-semibold">
-            Populasi &amp; Sampel • Bab 3.4 &amp; Lampiran 1
-          </div>
-          <h3 class="font-poppins text-xl font-bold text-[#06141B] mt-1">
-            Simulasi Saringan Responden (Purposive Sampling)
-          </h3>
-          <p class="font-helvetica text-xs text-[#4A5C6A] mt-2 leading-relaxed">
-            Target sampel: <strong class="text-[#06141B]">310 responden valid</strong> (rumus Hair et al., 2019: 10 × 31 indikator). Centang atau lepaskan kriteria di bawah untuk menguji logika <em>filtering question</em> kuesioner:
-          </p>
-
-          <div class="mt-5 space-y-3 text-xs">
-            <label class="flex items-start gap-3 p-3 rounded-xl bg-white border border-[#CCD0CF] cursor-pointer">
-              <input type="checkbox" checked onchange="evaluateScreening()" class="screen-chk mt-0.5 accent-[#06141B]" />
-              <span><strong>1. Usia 25–46 Tahun:</strong> Berpenghasilan mandiri &amp; memiliki horizon perencanaan ≥ 13 tahun menuju usia pensiun JP (59 tahun).</span>
-            </label>
-            <label class="flex items-start gap-3 p-3 rounded-xl bg-white border border-[#CCD0CF] cursor-pointer">
-              <input type="checkbox" checked onchange="evaluateScreening()" class="screen-chk mt-0.5 accent-[#06141B]" />
-              <span><strong>2. Karyawan Tetap (PKWTT) Swasta:</strong> Bukan ASN/PNS, TNI/Polri, maupun pegawai BUMN/BUMD.</span>
-            </label>
-            <label class="flex items-start gap-3 p-3 rounded-xl bg-white border border-[#CCD0CF] cursor-pointer">
-              <input type="checkbox" checked onchange="evaluateScreening()" class="screen-chk mt-0.5 accent-[#06141B]" />
-              <span><strong>3. Lokasi Kerja / Domisili Jabodetabek:</strong> Jakarta, Bogor, Depok, Tangerang, atau Bekasi.</span>
-            </label>
-            <label class="flex items-start gap-3 p-3 rounded-xl bg-white border border-[#CCD0CF] cursor-pointer">
-              <input type="checkbox" checked onchange="evaluateScreening()" class="screen-chk mt-0.5 accent-[#06141B]" />
-              <span><strong>4. Masa Kerja ≥ 1 Tahun:</strong> Mengontrol faktor stabilitas pendapatan (<em>income stability</em>).</span>
-            </label>
-            <label class="flex items-start gap-3 p-3 rounded-xl bg-white border border-[#CCD0CF] cursor-pointer">
-              <input type="checkbox" checked onchange="evaluateScreening()" class="screen-chk mt-0.5 accent-[#06141B]" />
-              <span><strong>5. Peserta Aktif BPJS Ketenagakerjaan:</strong> Tercakup dalam jaminan sosial ketenagakerjaan wajib.</span>
-            </label>
-          </div>
-
-          <div id="screeningResultBox" class="mt-6 p-4 rounded-xl bg-[#06141B] text-white text-xs">
-            <div class="font-poppins font-bold text-[#CCD0CF] uppercase">STATUS: LOLOS SARINGAN (RESPONDEN VALID)</div>
-            <p class="text-[#9BA8AB] mt-1">
-              Responden memenuhi seluruh 5 kriteria <em>purposive sampling</em> dan dapat melanjutkan ke pengisian 35 butir pernyataan utama.
-            </p>
-          </div>
-        </div>
-
-        <!-- Right 7 Cols: PLS-SEM Evaluation Stages -->
-        <div class="lg:col-span-7 space-y-6">
+      <div class="grid lg:grid-cols-12 gap-8 mt-10 items-stretch">
+        
+        <!-- Left Card: 5 Kriteria Saringan & 3 Informed Consent -->
+        <div class="lg:col-span-7 bg-white/5 border border-white/15 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="font-poppins text-xs uppercase tracking-widest text-[#253745] font-semibold">
-              Teknik Analisis Data • Bab 3.5 (SmartPLS)
+            <h3 class="text-lg font-extrabold text-yellow-300">
+              1. Kriteria Responden Penelitian (<span class="italic">Filtering Criteria</span>)
+            </h3>
+            <p class="text-xs text-slate-300 mt-1">
+              Mohon pastikan Anda memenuhi kelima kriteria berikut sebelum mengisi kuesioner:
+            </p>
+
+            <ul class="mt-4 space-y-3 text-xs sm:text-sm">
+              <li class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-extrabold flex items-center justify-center text-xs shrink-0 mt-0.5">1</span>
+                <span>Berusia antara <strong>25 hingga 54 tahun</strong> (terbagi dalam kelompok usia 25–34 tahun, 35–44 tahun, atau 45–54 tahun).</span>
+              </li>
+              <li class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-extrabold flex items-center justify-center text-xs shrink-0 mt-0.5">2</span>
+                <span>Bekerja sebagai <strong>karyawan tetap / Perjanjian Kerja Waktu Tidak Tertentu (PKWTT)</strong> pada perusahaan sektor swasta (bukan ASN/PNS, anggota TNI/Polri, maupun pegawai BUMN/BUMD).</span>
+              </li>
+              <li class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-extrabold flex items-center justify-center text-xs shrink-0 mt-0.5">3</span>
+                <span>Lokasi tempat kerja (kantor) saat ini berada di wilayah <strong>Provinsi DKI Jakarta</strong> (Jakarta Pusat, Jakarta Utara, Jakarta Barat, Jakarta Selatan, atau Jakarta Timur).</span>
+              </li>
+              <li class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-extrabold flex items-center justify-center text-xs shrink-0 mt-0.5">4</span>
+                <span>Memiliki masa kerja <strong>sekurang-kurangnya 1 (satu) tahun</strong> pada perusahaan tempat bekerja saat ini.</span>
+              </li>
+              <li class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-extrabold flex items-center justify-center text-xs shrink-0 mt-0.5">5</span>
+                <span>Terdaftar sebagai <strong>peserta aktif BPJS Ketenagakerjaan</strong>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-white/15">
+            <h4 class="text-sm font-bold text-sky-300">2. Jaminan Etika &amp; Kerahasiaan Data (<span class="italic">Informed Consent</span>)</h4>
+            <div class="grid sm:grid-cols-3 gap-3 mt-3 text-xs text-slate-300">
+              <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                <p class="font-bold text-white">100% Sukarela</p>
+                <p class="mt-1 text-[11px]">Bebas mengundurkan diri atau berhenti mengisi sewaktu-waktu tanpa sanksi apa pun.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                <p class="font-bold text-white">100% Anonim</p>
+                <p class="mt-1 text-[11px]">Tidak meminta nama lengkap maupun nomor telepon yang mengidentifikasi diri.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                <p class="font-bold text-white">Olahan Agregat</p>
+                <p class="mt-1 text-[11px]">Data dijaga kerahasiaannya dan hanya diolah secara kolektif untuk kepentingan ilmiah UI.</p>
+              </div>
             </div>
-            <h2 class="font-poppins text-2xl sm:text-3xl font-bold text-[#06141B] mt-1">
-              Tahapan Pengujian Instrumen &amp; PLS-SEM
-            </h2>
+          </div>
+        </div>
+
+        <!-- Right Card: Big QR Code, Bitly Link, Download & Share -->
+        <div class="lg:col-span-5 bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between border-2 border-yellow-400">
+          <div class="text-center">
+            <span class="px-3 py-1 rounded-full bg-slate-900 text-yellow-400 text-xs font-extrabold uppercase tracking-wider">
+              Tautan &amp; QR Code Resmi
+            </span>
+            <h3 class="text-xl font-extrabold text-slate-900 mt-3">Akses Google Form Kuesioner</h3>
+            <p class="text-xs text-slate-500 mt-1">Pindai QR Code Bitly di bawah ini atau klik tombol untuk membuka formulir:</p>
+
+            <div class="my-5 inline-block p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 shadow-inner">
+              <img src="data:image/png;base64,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" 
+                   id="qrCodeImage"
+                   alt="Bitly QR Code Kuesioner Skripsi Tavi" 
+                   class="w-56 h-56 sm:w-64 sm:h-64 object-contain mx-auto bg-white p-2 rounded-xl" />
+            </div>
+
+            <div class="bg-slate-100 rounded-xl p-3 border border-slate-200">
+              <p class="text-[11px] font-bold text-slate-400 uppercase">Tautan Singkat Bitly</p>
+              <a href="https://bit.ly/4BKjazX" target="_blank" rel="noopener noreferrer"
+                 class="text-base sm:text-lg font-mono font-extrabold text-blue-700 hover:underline break-all">
+                https://bit.ly/4BKjazX
+              </a>
+            </div>
           </div>
 
-          <div class="flex flex-wrap gap-6 border-b border-[#CCD0CF] font-poppins text-xs">
-            <button type="button" onclick="switchMethodStage('pretest')" id="mstage-pretest" class="clean-tab active">
-              1. Pre-Test (n = 30) &amp; CMV
-            </button>
-            <button type="button" onclick="switchMethodStage('outer')" id="mstage-outer" class="clean-tab">
-              2. Outer Model (Measurement)
-            </button>
-            <button type="button" onclick="switchMethodStage('inner')" id="mstage-inner" class="clean-tab">
-              3. Inner Model (Structural)
-            </button>
-            <button type="button" onclick="switchMethodStage('mediasi')" id="mstage-mediasi" class="clean-tab">
-              4. Uji Mediasi &amp; Bootstrapping
-            </button>
+          <div class="mt-6 space-y-2.5">
+            <a href="https://bit.ly/4BKjazX" target="_blank" rel="noopener noreferrer"
+               class="w-full py-3.5 px-5 rounded-xl bg-navy-900 hover:bg-navy-800 text-yellow-400 font-extrabold text-sm flex items-center justify-center gap-2 shadow-md transition">
+              <span>Buka Kuesioner Google Form</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="copyBitlyLink()" id="copyBtnFooter"
+                      class="py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-300 transition">
+                Salin Link Bitly
+              </button>
+              <a href="data:image/png;base64,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" download="QR_Kuesioner_Skripsi_Tavi_FIA_UI.png"
+                 class="py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-300 text-center transition">
+                Unduh QR Code
+              </a>
+            </div>
           </div>
-
-          <div id="methodStageContent" class="divide-y divide-[#CCD0CF] border border-[#CCD0CF] rounded-2xl bg-white px-6 py-2"></div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- =====================================================================
-         SECTION 6: SIMULATOR KUESIONER 35 BUTIR (TABEL 2.2 & LAMPIRAN 1)
-    ====================================================================== -->
-    <section id="instrumen" class="py-14 lg:py-20 border-t border-[#CCD0CF] space-y-8">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-        <div>
-          <div class="font-poppins text-xs uppercase tracking-widest text-[#253745] font-semibold">
-            Operasionalisasi Konsep &amp; Lampiran 1 • 31 Indikator (35 Butir Pernyataan)
-          </div>
-          <h2 class="font-poppins text-2xl sm:text-3xl font-bold text-[#06141B] mt-1">
-            Uji Coba Instrumen Kuesioner (Skala Likert 1–5)
-          </h2>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2 text-xs font-poppins">
-          <span class="text-[#4A5C6A]">Profil Responden Cepat:</span>
-          <button type="button" onclick="loadSimulatorPreset('paradoks')" class="px-3 py-1.5 rounded-xl border border-[#CCD0CF] text-[#06141B] hover:bg-[#F8FAFA] font-medium">
-            Penabung Tanpa Tujuan
-          </button>
-          <button type="button" onclick="loadSimulatorPreset('ideal')" class="px-3 py-1.5 rounded-xl border border-[#CCD0CF] text-[#06141B] hover:bg-[#F8FAFA] font-medium">
-            Siap Pensiun (Skor 5)
-          </button>
-          <button type="button" onclick="loadSimulatorPreset('rentan')" class="px-3 py-1.5 rounded-xl border border-[#CCD0CF] text-[#06141B] hover:bg-[#F8FAFA] font-medium">
-            Rentan (Skor 2)
-          </button>
-        </div>
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-slate-400 py-8 border-t border-white/10 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-bold text-white">Tavi Shaquille Ramadhani (2306281465)</p>
+        <p>Program Studi Ilmu Administrasi Niaga • Fakultas Ilmu Administrasi Universitas Indonesia (FIA UI)</p>
       </div>
-
-      <!-- Live Mean Score Summary Bar -->
-      <div id="meanScoreCards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6 rounded-2xl border border-[#CCD0CF] bg-[#F8FAFA]"></div>
-
-      <!-- Filter Tabs for 35 Items -->
-      <div class="flex flex-wrap gap-6 border-b border-[#CCD0CF] font-poppins text-xs">
-        <button type="button" onclick="filterItems('ALL')" id="item-tab-ALL" class="clean-tab active">
-          Semua Butir (35)
-        </button>
-        <button type="button" onclick="filterItems('FA')" id="item-tab-FA" class="clean-tab">
-          Financial Attitude (7)
-        </button>
-        <button type="button" onclick="filterItems('FB')" id="item-tab-FB" class="clean-tab">
-          Financial Behavior (8)
-        </button>
-        <button type="button" onclick="filterItems('FTP')" id="item-tab-FTP" class="clean-tab">
-          Future Time Perspective (5)
-        </button>
-        <button type="button" onclick="filterItems('RGC')" id="item-tab-RGC" class="clean-tab">
-          Retirement Goal Clarity (5)
-        </button>
-        <button type="button" onclick="filterItems('RPB')" id="item-tab-RPB" class="clean-tab">
-          Retirement Planning Behavior (10)
-        </button>
-      </div>
-
-      <!-- 35 Items List -->
-      <div id="questionnaireItemsList" class="divide-y divide-[#CCD0CF] border border-[#CCD0CF] rounded-2xl bg-white px-4 sm:px-6"></div>
-    </section>
-
-  </main>
-
-  <!-- =====================================================================
-       FOOTER
-  ====================================================================== -->
-  <footer class="border-t border-[#CCD0CF] bg-[#06141B] text-white">
-    <div class="max-w-[1320px] mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-xs">
-      <div class="space-y-1">
-        <div class="font-poppins text-[11px] uppercase tracking-widest text-[#9BA8AB]">
-          UNIVERSITAS INDONESIA • FAKULTAS ILMU ADMINISTRASI • PROGRAM STUDI ILMU ADMINISTRASI NIAGA
-        </div>
-        <div class="font-poppins text-sm text-white font-medium">
-          Tavi Shaquille Ramadhani <span class="text-[#9BA8AB]">(2306281465)</span> • Pembimbing: Dra. Novita Ikasari, M.Comm., Ph.D., CIQaR.
-        </div>
-      </div>
-      <div class="font-poppins text-xs text-[#9BA8AB]">
-        Seminar Proposal Skripsi • Depok, 2026
+      <div class="flex items-center gap-4">
+        <a href="https://bit.ly/4BKjazX" target="_blank" rel="noopener noreferrer" class="text-yellow-400 font-bold hover:underline">
+          bit.ly/4BKjazX
+        </a>
+        <span>•</span>
+        <span>Depok, 2026</span>
       </div>
     </div>
   </footer>
 
-  <!-- =====================================================================
-       APPLICATION JAVASCRIPT
-  ====================================================================== -->
+  <!-- SCRIPT FOR INSTRUMENT TABLE & COPY LINK -->
   <script>
-    /* ---------------------------------------------------------------------
-       1. NEUMAN (2020) TABEL 3.2 MEAN CATEGORY CLASSIFIER
-    --------------------------------------------------------------------- */
-    function getNeumanCategory(score) {
-      if (score < 2.00) return "Rendah";
-      if (score < 3.00) return "Agak Rendah";
-      if (score < 4.00) return "Agak Tinggi";
-      return "Tinggi";
-    }
-
-    function formatRupiah(num) {
-      return "Rp " + Math.round(num).toLocaleString("id-ID");
-    }
-
-    function formatDecimalID(num) {
-      return Number(num).toFixed(2).replace(".", ",");
-    }
-
-    /* ---------------------------------------------------------------------
-       2. KALKULATOR INTERAKTIF SKRIPSI (EXACT PRESERVED LOGIC & DESIGN)
-    --------------------------------------------------------------------- */
-    function updateThesisCalculator() {
-      const currentAgeEl = document.getElementById("calcCurrentAge");
-      const targetAgeEl = document.getElementById("calcTargetAge");
-      const flEl = document.getElementById("calcScoreFL");
-      const ftpEl = document.getElementById("calcScoreFTP");
-      const rgcEl = document.getElementById("calcScoreRGC");
-      const expenseEl = document.getElementById("calcMonthlyExpense");
-
-      let currentAge = parseInt(currentAgeEl.value, 10) || 28;
-      let targetAge = parseInt(targetAgeEl.value, 10) || 59;
-      if (targetAge <= currentAge) {
-        targetAge = currentAge + 1;
-        targetAgeEl.value = targetAge;
-      }
-
-      const fl = parseFloat(flEl.value) || 3.80;
-      const ftp = parseFloat(ftpEl.value) || 3.90;
-      const rgc = parseFloat(rgcEl.value) || 4.10;
-      const monthlyExpense = Math.max(0, parseFloat(expenseEl.value) || 0);
-
-      // Update Left Labels
-      document.getElementById("labelCurrentAge").textContent = `${currentAge} Tahun`;
-      document.getElementById("labelTargetAge").textContent = `${targetAge} Tahun`;
-      document.getElementById("labelScoreFL").textContent = `${formatDecimalID(fl)} (${getNeumanCategory(fl)})`;
-      document.getElementById("labelScoreFTP").textContent = `${formatDecimalID(ftp)} (${getNeumanCategory(ftp)})`;
-      document.getElementById("labelScoreRGC").textContent = `${formatDecimalID(rgc)} (${getNeumanCategory(rgc)})`;
-
-      // Exact Structural Weighting: (0.22 * FL) + (0.20 * FTP) + (0.58 * RGC)
-      // At default FL=3.80, FTP=3.90, RGC=4.10 -> 0.836 + 0.780 + 2.378 = 3.994 -> 3,99 (Kategori: Agak Tinggi)
-      const predictedRPB = Math.min(5.00, Math.max(1.00, (0.22 * fl) + (0.20 * ftp) + (0.58 * rgc)));
-      const rpbCategory = getNeumanCategory(predictedRPB);
-
-      // Horizon & Pension Fund Math (Assuming 15 Years of Retirement = 180 Months)
-      const horizonYears = Math.max(1, targetAge - currentAge);
-      const totalMonthsWorking = horizonYears * 12;
-      const totalRetirementFund = monthlyExpense * 12 * 15;
-      const monthlySavingNeeded = totalRetirementFund / totalMonthsWorking;
-
-      // Update Right Dark Card
-      document.getElementById("calcPredRPB").textContent = formatDecimalID(predictedRPB);
-      document.getElementById("calcPredBadge").textContent = `Kategori: ${rpbCategory}`;
-      document.getElementById("calcHorizonYears").textContent = `${horizonYears} Tahun`;
-      document.getElementById("calcMonthlySaving").textContent = formatRupiah(monthlySavingNeeded);
-      document.getElementById("calcTotalFund").textContent = formatRupiah(totalRetirementFund);
-
-      // Dynamic CWO Narrative
-      const narrativeEl = document.getElementById("calcNarrativeCWO");
-      if (rgc >= 3.50 && (fl >= 3.00 || ftp >= 3.00)) {
-        narrativeEl.innerHTML = `Sesuai kerangka CWO Model (Hershey et al., 2013), kejelasan tujuan pensiun (<em>Retirement Goal Clarity</em>) yang tinggi mampu mengonversi literasi keuangan dan orientasi masa depan menjadi perilaku menabung pensiun yang aktif.`;
-      } else if (rgc < 3.00 && (fl >= 3.50 || ftp >= 3.50)) {
-        narrativeEl.innerHTML = `<strong>Paradoks Kapasitas Tanpa Tujuan:</strong> Meskipun literasi keuangan (${formatDecimalID(fl)}) dan orientasi masa depan (${formatDecimalID(ftp)}) cukup baik, rendahnya <em>Retirement Goal Clarity</em> (${formatDecimalID(rgc)}) menghambat konversi kapasitas tersebut menjadi persiapan dana pensiun.`;
-      } else {
-        narrativeEl.innerHTML = `Berdasarkan model struktural penelitian, peningkatan pada <em>Financial Literacy</em>, <em>Future Time Perspective</em>, dan terutama kejelasan sasaran pada <em>Retirement Goal Clarity</em> dibutuhkan untuk mendorong <em>Retirement Planning Behavior</em>.`;
-      }
-    }
-
-    function setCalculatorPreset(mode) {
-      if (mode === 'default') {
-        document.getElementById("calcCurrentAge").value = 28;
-        document.getElementById("calcTargetAge").value = 59;
-        document.getElementById("calcScoreFL").value = 3.80;
-        document.getElementById("calcScoreFTP").value = 3.90;
-        document.getElementById("calcScoreRGC").value = 4.10;
-        document.getElementById("calcMonthlyExpense").value = 8000000;
-      } else if (mode === 'paradoks') {
-        document.getElementById("calcCurrentAge").value = 30;
-        document.getElementById("calcTargetAge").value = 59;
-        document.getElementById("calcScoreFL").value = 4.00;
-        document.getElementById("calcScoreFTP").value = 3.80;
-        document.getElementById("calcScoreRGC").value = 2.10;
-        document.getElementById("calcMonthlyExpense").value = 8000000;
-      } else if (mode === 'optimal') {
-        document.getElementById("calcCurrentAge").value = 27;
-        document.getElementById("calcTargetAge").value = 59;
-        document.getElementById("calcScoreFL").value = 4.60;
-        document.getElementById("calcScoreFTP").value = 4.50;
-        document.getElementById("calcScoreRGC").value = 4.75;
-        document.getElementById("calcMonthlyExpense").value = 10000000;
-      }
-      updateThesisCalculator();
-    }
-
-    function syncCalculatorFrom35Items() {
-      const calcMean = (vGroup) => {
-        const sub = questionnaireData.filter(i => i.varGroup === vGroup);
-        return sub.reduce((acc, cur) => acc + cur.val, 0) / sub.length;
-      };
-      document.getElementById("calcScoreFL").value = calcMean("FL").toFixed(2);
-      document.getElementById("calcScoreFTP").value = calcMean("FTP").toFixed(2);
-      document.getElementById("calcScoreRGC").value = calcMean("RGC").toFixed(2);
-      updateThesisCalculator();
-      document.getElementById("kalkulator").scrollIntoView({ behavior: "smooth" });
-    }
-
-    /* ---------------------------------------------------------------------
-       3. CWO MODEL & IMAGE THEORY TOGGLE
-    --------------------------------------------------------------------- */
-    function setHeroCwoMode(mode) {
-      const btnTanpa = document.getElementById("cwo-btn-tanpa");
-      const btnAktif = document.getElementById("cwo-btn-aktif");
-      const container = document.getElementById("heroCwoPipeline");
-
-      if (mode === "tanpa") {
-        btnTanpa.classList.add("active");
-        btnAktif.classList.remove("active");
-        container.innerHTML = `
-          <div class="p-3.5 rounded-xl bg-white border border-[#CCD0CF]">
-            <div class="font-poppins font-semibold text-[#06141B]">1. Capacity (Self-Image): Memadai</div>
-            <p class="text-[#4A5C6A] mt-0.5">Pekerja rutin menabung (89% di survei OCBC 2025) namun tanpa sasaran jangka panjang.</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-white border border-dashed border-[#4A5C6A]">
-            <div class="font-poppins font-semibold text-[#253745]">2. Willingness (Trajectory Image): Kabur</div>
-            <p class="text-[#4A5C6A] mt-0.5">Tidak memiliki target nominal dana pensiun yang spesifik (Retirement Goal Clarity rendah).</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-[#253745] text-white">
-            <div class="font-poppins font-semibold">3. Action Image: Klaim JHT Dini</div>
-            <p class="text-[#CCD0CF] mt-0.5">Tabungan dipakai untuk jangka pendek &amp; JHT dicairkan saat resign/PHK (&gt;80% kasus).</p>
-          </div>
-        `;
-      } else {
-        btnAktif.classList.add("active");
-        btnTanpa.classList.remove("active");
-        container.innerHTML = `
-          <div class="p-3.5 rounded-xl bg-white border border-[#CCD0CF]">
-            <div class="font-poppins font-semibold text-[#06141B]">1. Capacity (Self-Image): FL &amp; FTP Tinggi</div>
-            <p class="text-[#4A5C6A] mt-0.5">Sikap &amp; perilaku pengelolaan uang yang sehat disertai orientasi masa depan (H1 &amp; H2).</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-white border-2 border-[#06141B]">
-            <div class="font-poppins font-semibold text-[#06141B]">2. Willingness (Trajectory Image): Mediator Aktif</div>
-            <p class="text-[#4A5C6A] mt-0.5">Menetapkan target kebutuhan dana dan kualitas hidup pensiun yang jelas (H5 &amp; H6).</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-[#06141B] text-white">
-            <div class="font-poppins font-semibold">3. Action Image: Retirement Planning Behavior</div>
-            <p class="text-[#9BA8AB] mt-0.5">Menghitung kebutuhan dana &amp; menyisihkan tabungan pensiun sukarela secara rutin (H3).</p>
-          </div>
-        `;
-      }
-    }
-
-    /* ---------------------------------------------------------------------
-       4. EMPIRICAL CHARTS (GAMBAR 1.1 – 1.4)
-    --------------------------------------------------------------------- */
-    const mercerData = [
-      { country: "Singapura", overall: 80.8, adequacy: 79.4, grade: "Predikat A", highlight: false },
-      { country: "Malaysia", overall: 60.6, adequacy: 54.0, grade: "Predikat C+", highlight: false },
-      { country: "Vietnam", overall: 53.7, adequacy: 57.1, grade: "Predikat C", highlight: false },
-      { country: "Indonesia", overall: 51.0, adequacy: 40.1, grade: "Overall C • Adequacy D", highlight: true },
-      { country: "Thailand", overall: 50.6, adequacy: 47.6, grade: "Predikat C", highlight: false },
-      { country: "Filipina", overall: 47.1, adequacy: 40.0, grade: "Predikat D", highlight: false }
+    const instrumentItems = [
+      // Financial Literacy - Financial Attitude (Potrich et al., 2015)
+      { no: "1", code: "FL", varName: "Financial Literacy (Attitude)", id: "Menurut saya, penting untuk mengendalikan pengeluaran bulanan.", en: "It is important to control monthly expenses.", ref: "Potrich et al. (2015)" },
+      { no: "2", code: "FL", varName: "Financial Literacy (Attitude)", id: "Menurut saya, penting untuk menetapkan target keuangan untuk masa depan.", en: "It is important to establish financial targets for the future.", ref: "Potrich et al. (2015)" },
+      { no: "3", code: "FL", varName: "Financial Literacy (Attitude)", id: "Menurut saya, penting untuk menabung setiap bulan.", en: "It is important to save money monthly.", ref: "Potrich et al. (2015)" },
+      { no: "4", code: "FL", varName: "Financial Literacy (Attitude)", id: "Cara saya mengelola uang saat ini akan memengaruhi kondisi keuangan saya di masa depan.", en: "The way I manage my money today will affect my future.", ref: "Potrich et al. (2015)" },
+      { no: "5a", code: "FL", varName: "Financial Literacy (Attitude)", id: "Menurut saya, penting untuk memiliki rencana pengeluaran bulanan.", en: "It is important to have and follow a monthly expense plan.", ref: "Potrich et al. (2015)" },
+      { no: "5b", code: "FL", varName: "Financial Literacy (Attitude)", id: "Menurut saya, penting untuk menjalankan rencana pengeluaran bulanan.", en: "It is important to have and follow a monthly expense plan.", ref: "Potrich et al. (2015)" },
+      { no: "6", code: "FL", varName: "Financial Literacy (Attitude)", id: "Menurut saya, penting untuk berinvestasi secara rutin demi mencapai tujuan jangka panjang.", en: "It is important to invest regularly to achieve targets in the long term.", ref: "Potrich et al. (2015)" },
+      // Financial Literacy - Financial Behavior (Potrich et al., 2015)
+      { no: "7a", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya mencatat pengeluaran pribadi saya.", en: "I take notes and control my personal expenses (e.g., expense and revenue spreadsheet).", ref: "Potrich et al. (2015)" },
+      { no: "7b", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya mengendalikan pengeluaran pribadi saya.", en: "I take notes and control my personal expenses (e.g., expense and revenue spreadsheet).", ref: "Potrich et al. (2015)" },
+      { no: "8", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya menetapkan target keuangan jangka panjang yang memengaruhi cara saya mengelola pengeluaran.", en: "I establish financial targets for the long term that influence the management of my expenses.", ref: "Potrich et al. (2015)" },
+      { no: "9a", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya menjalankan rencana pengeluaran mingguan.", en: "I follow a weekly or monthly plan for expenses.", ref: "Potrich et al. (2015)" },
+      { no: "9b", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya menjalankan rencana pengeluaran bulanan.", en: "I follow a weekly or monthly plan for expenses.", ref: "Potrich et al. (2015)" },
+      { no: "10", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya menabung setiap bulan.", en: "I save monthly.", ref: "Potrich et al. (2015)" },
+      { no: "11", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya menabung agar dapat membeli barang bernilai besar.", en: "I save so that I can buy something expensive (e.g., car).", ref: "Potrich et al. (2015)" },
+      { no: "12", code: "FL", varName: "Financial Literacy (Behavior)", id: "Saya memiliki dana cadangan setidaknya tiga kali penghasilan bulanan saya untuk keperluan tak terduga.", en: "I have a financial reserve at least three times my monthly earnings, which can be used in unexpected moments (e.g., unemployment).", ref: "Potrich et al. (2015)" },
+      // Future Time Perspective (Koposko & Hershey, 2014 in Tomar et al., 2021)
+      { no: "13", code: "FTP", varName: "Future Time Perspective", id: "Saya senang memikirkan apa yang akan terjadi di masa depan.", en: "I like to think about what the future will hold.", ref: "Tomar et al. (2021)" },
+      { no: "14", code: "FTP", varName: "Future Time Perspective", id: "Saya menikmati membayangkan bagaimana kehidupan saya bertahun-tahun ke depan.", en: "I enjoy thinking about how I will live years from now in the future.", ref: "Tomar et al. (2021)" },
+      { no: "15", code: "FTP", varName: "Future Time Perspective", id: "Saya menantikan kehidupan saya di masa depan yang jauh.", en: "I look forward to life in the distant future.", ref: "Tomar et al. (2021)" },
+      { no: "16", code: "FTP", varName: "Future Time Perspective", id: "Menurut saya, penting untuk memiliki pandangan jangka panjang dalam hidup.", en: "According to me, it is important to have a long term perspective in life.", ref: "Tomar et al. (2021)" },
+      { no: "17", code: "FTP", varName: "Future Time Perspective", id: "Teman dekat saya akan menggambarkan saya sebagai orang yang berorientasi masa depan.", en: "My close friend would describe me as future oriented.", ref: "Tomar et al. (2021)" },
+      // Retirement Goal Clarity (Stawski et al., 2007)
+      { no: "18", code: "RGC", varName: "Retirement Goal Clarity", id: "Saya menetapkan target yang spesifik mengenai jumlah dana yang perlu saya siapkan untuk masa pensiun.", en: "I set specific goals regarding how much I will need to save for my retirement.", ref: "Stawski et al. (2007)" },
+      { no: "19", code: "RGC", varName: "Retirement Goal Clarity", id: "Saya banyak memikirkan kualitas hidup yang saya inginkan setelah pensiun.", en: "I think a great deal about quality of life I want to lead after retirement.", ref: "Stawski et al. (2007)" },
+      { no: "20", code: "RGC", varName: "Retirement Goal Clarity", id: "Saya memiliki gambaran yang jelas mengenai kehidupan saya setelah pensiun.", en: "I have a clear vision of how my life shall be after retirement.", ref: "Stawski et al. (2007)" },
+      { no: "21", code: "RGC", varName: "Retirement Goal Clarity", id: "Saya menetapkan tujuan yang jelas dalam mencari informasi mengenai masa pensiun.", en: "I have set clear goals for gaining information about retirement.", ref: "Stawski et al. (2007)" },
+      { no: "22", code: "RGC", varName: "Retirement Goal Clarity", id: "Saya pernah mendiskusikan rencana pensiun dengan pasangan, teman, atau orang terdekat.", en: "I have discussed retirement plans with spouse, friends, or significant others.", ref: "Stawski et al. (2007)" },
+      // Retirement Planning Behavior (Tomar et al., 2021)
+      { no: "23", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya telah melakukan perhitungan untuk memperkirakan jumlah dana yang perlu saya siapkan agar dapat pensiun dengan nyaman.", en: "Calculations have been made to estimate how much I have to save to retire comfortably.", ref: "Tomar et al. (2021)" },
+      { no: "24a", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya sering membaca artikel, buku, atau brosur untuk mempelajari perencanaan pensiun.", en: "I frequently read articles, books, brochures or surf the internet to learn about retirement planning.", ref: "Tomar et al. (2021)" },
+      { no: "24b", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya sering mencari informasi di internet untuk mempelajari perencanaan pensiun.", en: "I frequently read articles, books, brochures or surf the internet to learn about retirement planning.", ref: "Tomar et al. (2021)" },
+      { no: "25", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya telah mencari tahu besaran manfaat pensiun dari BPJS Ketenagakerjaan (seperti Jaminan Hari Tua dan Jaminan Pensiun) yang akan saya terima di masa depan.", en: "I have informed myself about the level of my future pension benefits.", ref: "Tomar et al. (2021)" },
+      { no: "26", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya telah mencari tahu mengenai persiapan keuangan untuk masa pensiun.", en: "I have informed myself about financial preparation for retirement.", ref: "Tomar et al. (2021)" },
+      { no: "27", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya rutin menyisihkan dana pada program tabungan pensiun sukarela di luar program wajib BPJS Ketenagakerjaan.", en: "I have made regular contributions to a voluntary retirement savings plan.", ref: "Tomar et al. (2021)" },
+      { no: "28", code: "RPB", varName: "Retirement Planning Behavior", id: "Dibandingkan rekan seusia saya, saya telah menyiapkan dana yang jauh lebih banyak untuk masa pensiun.", en: "Relative to my peers, I have saved a great deal (almost double) of money for post retirement years.", ref: "Tomar et al. (2021)" },
+      { no: "29", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya rutin menyisihkan persentase tetap dari penghasilan saya untuk tabungan pensiun.", en: "I regularly contribute a fixed percentage of my income to my retirement saving account.", ref: "Tomar et al. (2021)" },
+      { no: "30", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya secara sadar berusaha menabung untuk masa pensiun.", en: "I make a conscious effort to save for retirement.", ref: "Tomar et al. (2021)" },
+      { no: "31", code: "RPB", varName: "Retirement Planning Behavior", id: "Saya telah menabung sesuai dengan rencana kehidupan yang saya inginkan saat pensiun.", en: "Based on how I plan to live my life in retirement, I have saved accordingly.", ref: "Tomar et al. (2021)" }
     ];
 
-    const jhtClaimsData = [
-      { year: "2021", cases: 2500000, casesLabel: "~2.500.000 kasus", nominal: "Rp37,10 Triliun", note: "Periode pandemi COVID-19" },
-      { year: "2022", cases: 3400000, casesLabel: "~3.400.000 kasus", nominal: "Rp43,20 Triliun", note: "Berlakunya Permenaker No. 4/2022" },
-      { year: "2023", cases: 3619708, casesLabel: "3.619.708 kasus", nominal: "Laporan Tahunan BPJS TK", note: "Tren klaim meningkat" },
-      { year: "2024", cases: 3111301, casesLabel: "3.111.301 kasus", nominal: "Laporan Tahunan BPJS TK", note: "Sempat melandai sementara" },
-      { year: "2025", cases: 3902875, casesLabel: "3.902.875 kasus", nominal: "Rp57,25 Triliun", note: "Melonjak +25,4% YoY (67,61% total klaim)", highlight: true }
-    ];
-
-    const ojkSnlikData = [
-      { sector: "Perbankan", literacy: 65.50, highlight: false },
-      { sector: "Pegadaian", literacy: 56.55, highlight: false },
-      { sector: "Lembaga Pembiayaan", literacy: 46.66, highlight: false },
-      { sector: "Perasuransian", literacy: 45.45, highlight: false },
-      { sector: "Dana Pensiun (Inklusi: 5,37%)", literacy: 27.79, highlight: true },
-      { sector: "Fintech Lending", literacy: 24.90, highlight: false },
-      { sector: "Pasar Modal", literacy: 17.78, highlight: false },
-      { sector: "Lembaga Keuangan Mikro", literacy: 9.80, highlight: false }
-    ];
-
-    const jabodetabekData = [
-      { region: "Kota Depok", pct: 64.07, highlight: true },
-      { region: "Jakarta Selatan", pct: 61.59, highlight: false },
-      { region: "Kota Tangerang", pct: 61.50, highlight: false },
-      { region: "Kabupaten Tangerang", pct: 61.10, highlight: false },
-      { region: "Jakarta Timur", pct: 60.75, highlight: false },
-      { region: "Kota Tangerang Selatan", pct: 60.60, highlight: false },
-      { region: "Jakarta Pusat", pct: 59.82, highlight: false },
-      { region: "Jakarta Barat", pct: 58.91, highlight: false },
-      { region: "Jakarta Utara", pct: 58.00, highlight: false },
-      { region: "Kota Bekasi", pct: 57.96, highlight: false },
-      { region: "Kota Bogor", pct: 56.40, highlight: false },
-      { region: "Kabupaten Bekasi", pct: 56.24, highlight: false },
-      { region: "Kabupaten Bogor", pct: 50.29, highlight: false }
-    ];
-
-    function renderEmpiricalCharts() {
-      const mercerEl = document.getElementById("mercerBarsContainer");
-      if (!mercerEl) return;
-      mercerEl.innerHTML = mercerData.map(d => `
-        <div class="py-3.5 px-3 ${d.highlight ? 'bg-[#F8FAFA]' : ''} text-xs">
-          <div class="flex justify-between items-baseline mb-2">
-            <span class="font-poppins ${d.highlight ? 'font-bold text-[#06141B] text-sm' : 'font-medium text-[#11212D]'}">${d.country}</span>
-            <span class="font-poppins text-[11px] tabular-nums ${d.highlight ? 'font-bold text-[#06141B]' : 'text-[#4A5C6A]'}">
-              Overall ${d.overall.toFixed(1).replace('.', ',')} • Adequacy ${d.adequacy.toFixed(1).replace('.', ',')} (${d.grade})
-            </span>
-          </div>
-          <div class="space-y-1.5">
-            <div class="flex items-center gap-3">
-              <span class="w-16 text-[10px] text-[#4A5C6A]">Overall</span>
-              <div class="flex-1 h-2 rounded-full bg-[#CCD0CF] overflow-hidden">
-                <div class="h-full bg-[#11212D] bar-fill" style="width: ${d.overall}%"></div>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="w-16 text-[10px] text-[#4A5C6A]">Adequacy</span>
-              <div class="flex-1 h-2 rounded-full bg-[#CCD0CF] overflow-hidden">
-                <div class="h-full ${d.highlight ? 'bg-[#253745]' : 'bg-[#9BA8AB]'} bar-fill" style="width: ${d.adequacy}%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `).join("");
-
-      const maxCases = 4000000;
-      const jhtEl = document.getElementById("jhtBarsContainer");
-      if (jhtEl) {
-        jhtEl.innerHTML = jhtClaimsData.map(d => {
-          const widthPct = ((d.cases / maxCases) * 100).toFixed(1);
-          return `
-            <div class="py-3.5 px-3 ${d.highlight ? 'bg-[#F8FAFA]' : ''} text-xs">
-              <div class="flex flex-wrap justify-between items-baseline mb-1.5 font-poppins">
-                <span class="${d.highlight ? 'font-bold text-[#06141B] text-sm' : 'font-medium text-[#11212D]'}">${d.year} — ${d.casesLabel}</span>
-                <span class="font-semibold text-[#253745]">${d.nominal}</span>
-              </div>
-              <div class="w-full h-2 rounded-full bg-[#CCD0CF] my-1.5 overflow-hidden">
-                <div class="h-full ${d.highlight ? 'bg-[#06141B]' : 'bg-[#4A5C6A]'} bar-fill" style="width: ${widthPct}%"></div>
-              </div>
-              <div class="text-[11px] text-[#4A5C6A]">${d.note}</div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      const ojkEl = document.getElementById("ojkBarsContainer");
-      if (ojkEl) {
-        ojkEl.innerHTML = ojkSnlikData.map(d => `
-          <div class="py-3 px-3 ${d.highlight ? 'bg-[#F8FAFA]' : ''} text-xs">
-            <div class="flex justify-between mb-1.5 font-poppins">
-              <span class="${d.highlight ? 'font-bold text-[#06141B]' : 'text-[#253745]'}">${d.sector}</span>
-              <span class="font-bold text-[#06141B] tabular-nums">${d.literacy.toFixed(2).replace('.', ',')}%</span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-[#CCD0CF] overflow-hidden">
-              <div class="h-full ${d.highlight ? 'bg-[#06141B]' : 'bg-[#4A5C6A]'} bar-fill" style="width: ${d.literacy}%"></div>
-            </div>
-          </div>
-        `).join("");
-      }
-
-      const jaboEl = document.getElementById("jabodetabekBarsContainer");
-      if (jaboEl) {
-        jaboEl.innerHTML = jabodetabekData.map(d => `
-          <div class="py-2.5 px-2 ${d.highlight ? 'bg-[#F8FAFA]' : ''} text-xs">
-            <div class="flex justify-between mb-1 font-poppins">
-              <span class="${d.highlight ? 'font-bold text-[#06141B]' : 'text-[#253745]'}">${d.region}</span>
-              <span class="font-bold text-[#06141B] tabular-nums">${d.pct.toFixed(2).replace('.', ',')}%</span>
-            </div>
-            <div class="w-full h-1.5 rounded-full bg-[#CCD0CF] overflow-hidden">
-              <div class="h-full ${d.highlight ? 'bg-[#06141B]' : 'bg-[#4A5C6A]'} bar-fill" style="width: ${d.pct}%"></div>
-            </div>
-          </div>
-        `).join("");
-      }
-    }
-
-    function switchDataTab(tabId) {
-      ['g11', 'g12', 'g13', 'g14'].forEach(id => {
-        const tabBtn = document.getElementById(`tab-${id}`);
-        const panel = document.getElementById(`panel-${id}`);
-        if (tabBtn) {
-          if (id === tabId) tabBtn.classList.add('active');
-          else tabBtn.classList.remove('active');
-        }
-        if (panel) {
-          if (id === tabId) panel.classList.remove('hidden');
-          else panel.classList.add('hidden');
-        }
-      });
-    }
-
-    /* ---------------------------------------------------------------------
-       5. HYPOTHESIS INSPECTOR (BAB 2.4 – 2.5, H1–H6)
-    --------------------------------------------------------------------- */
-    const hypothesesData = {
-      H1: {
-        code: "Hipotesis 1 (H1) • Pengaruh Langsung",
-        path: "Future Time Perspective → Retirement Goal Clarity",
-        statement: "Future time perspective berpengaruh positif terhadap retirement goal clarity.",
-        theory: "Dalam CWO Model (Hershey et al., 2013) dan Image Theory (Beach & Mitchell, 1987), kapasitas kognitif temporal (self-image) memungkinkan individu mengantisipasi masa depan dan merumuskan sasaran kehidupan pensiun yang spesifik (trajectory image).",
-        evidence: [
-          { author: "Wasiuzzaman et al. (2026) — Brunei (n = 397)", stat: "β = 0,587 • t = 13,562 (p < 0,01)" },
-          { author: "Tomar et al. (2021) — India (n = 485)", stat: "β = 0,522 (p < 0,001)" },
-          { author: "Yeung et al. (2023) & Koposko & Hershey (2014)", stat: "Berpengaruh positif signifikan" }
-        ]
-      },
-      H2: {
-        code: "Hipotesis 2 (H2) • Pengaruh Langsung",
-        path: "Financial Literacy → Retirement Goal Clarity",
-        statement: "Financial literacy berpengaruh positif terhadap retirement goal clarity.",
-        theory: "Kecakapan literasi keuangan terapan yang tercermin melalui sikap (financial attitude) dan perilaku pengelolaan keuangan harian (financial behavior) membantu individu menetapkan target kebutuhan dana dan standar hidup pensiun secara realistis dan terukur.",
-        evidence: [
-          { author: "Alfando et al. (2025) — Milenial Indonesia (n = 212)", stat: "β = 0,465 • t = 7,425 (p < 0,01)" },
-          { author: "Wasiuzzaman et al. (2026) — Brunei (n = 397)", stat: "β = 0,115 • t = 2,587 (p < 0,01)" },
-          { author: "Yeung et al. (2023) & Tomar et al. (2021)", stat: "Berpengaruh positif signifikan" }
-        ]
-      },
-      H3: {
-        code: "Hipotesis 3 (H3) • Pengaruh Langsung",
-        path: "Retirement Goal Clarity → Retirement Planning Behavior",
-        statement: "Retirement goal clarity berpengaruh positif terhadap retirement planning behavior.",
-        theory: "Kejelasan tujuan pensiun merepresentasikan dimensi kesediaan (willingness) sekaligus trajectory image yang menyediakan tolok ukur kebutuhan dana dan memandu pelaksanaan tindakan nyata persiapan pensiun (action image).",
-        evidence: [
-          { author: "Wasiuzzaman et al. (2026) — Brunei (n = 397)", stat: "β = 0,680 • t = 15,281 (p < 0,01)" },
-          { author: "Tomar et al. (2021) — India (n = 485)", stat: "β = 0,680 (p < 0,001)" },
-          { author: "Alfando et al. (2025) — Indonesia (n = 212)", stat: "β = 0,415 • t = 5,436 (p < 0,01)" }
-        ]
-      },
-      H4: {
-        code: "Hipotesis 4 (H4) • Pengaruh Langsung",
-        path: "Future Time Perspective → Retirement Planning Behavior",
-        statement: "Future time perspective berpengaruh positif terhadap retirement planning behavior.",
-        theory: "Menguji pengaruh langsung orientasi masa depan pada konteks pekerja di Indonesia yang sistem jaminan hari tua wajibnya (BPJS Ketenagakerjaan) memiliki kemiripan struktural dengan Employees Provident Fund (EPF) di Malaysia.",
-        evidence: [
-          { author: "Kimiyagahlam et al. (2019) — Malaysia (n = 900)", stat: "β = 0,218 (p < 0,01 • Signifikan)" },
-          { author: "Wasiuzzaman et al. (2026) — Brunei", stat: "β = 0,060 • t = 1,340 (Tidak signifikan)" },
-          { author: "Tomar et al. (2021) — India", stat: "β = -0,003 (Tidak signifikan)" }
-        ]
-      },
-      H5: {
-        code: "Hipotesis 5 (H5) • Pengaruh Mediasi",
-        path: "Future Time Perspective → Retirement Goal Clarity → Retirement Planning Behavior",
-        statement: "Retirement goal clarity memediasi hubungan antara future time perspective dan retirement planning behavior.",
-        theory: "Orientasi masa depan yang panjang tidak otomatis berwujud tindakan menabung pensiun apabila belum diterjemahkan menjadi sasaran pensiun yang spesifik melalui retirement goal clarity.",
-        evidence: [
-          { author: "Wasiuzzaman et al. (2026) — Brunei", stat: "Indirect β = 0,399 • t = 10,003 (p < 0,01)" },
-          { author: "Tomar et al. (2021) — India", stat: "Indirect β = 0,355 (p < 0,001 • Full Mediation)" },
-          { author: "França & Hershey (2018) & Stawski et al. (2007)", stat: "Mediasi positif signifikan" }
-        ]
-      },
-      H6: {
-        code: "Hipotesis 6 (H6) • Pengaruh Mediasi",
-        path: "Financial Literacy → Retirement Goal Clarity → Retirement Planning Behavior",
-        statement: "Retirement goal clarity memediasi hubungan antara financial literacy dan retirement planning behavior.",
-        theory: "Sikap dan perilaku keuangan yang sehat membutuhkan kejelasan tujuan pensiun (retirement goal clarity) agar kebiasaan menabung harian diarahkan secara spesifik pada persiapan dana hari tua.",
-        evidence: [
-          { author: "Alfando et al. (2025) — Milenial Indonesia", stat: "Indirect β = 0,193 • t = 4,163 (p < 0,01)" },
-          { author: "Wasiuzzaman et al. (2026) — Brunei", stat: "Indirect β = 0,078 • t = 2,557 (p < 0,05)" },
-          { author: "Yeung et al. (2023) — Hong Kong", stat: "Mediasi positif signifikan" }
-        ]
-      }
-    };
-
-    function selectHypothesis(hKey) {
-      ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].forEach(k => {
-        const pill = document.getElementById(`pill-${k}`);
-        const svgPath = document.getElementById(`svg-path-${k}`);
-        if (pill) {
-          if (k === hKey) pill.classList.add('active');
-          else pill.classList.remove('active');
-        }
-        if (svgPath) {
-          if (k === hKey) {
-            svgPath.style.color = '#06141B';
-            svgPath.style.opacity = '1';
-          } else {
-            svgPath.style.color = '#9BA8AB';
-            svgPath.style.opacity = '0.35';
-          }
-        }
-      });
-
-      const h = hypothesesData[hKey];
-      const inspector = document.getElementById("hypothesisInspector");
-      if (!inspector || !h) return;
-
-      inspector.innerHTML = `
-        <div class="p-6 sm:p-8 rounded-2xl border border-[#CCD0CF] bg-[#F8FAFA] space-y-5">
-          <div>
-            <span class="font-poppins text-[11px] uppercase tracking-wider font-semibold text-[#253745] block">${h.code}</span>
-            <h3 class="font-poppins text-lg font-bold text-[#06141B] mt-1">${h.path}</h3>
-          </div>
-
-          <div class="p-4 rounded-xl bg-[#06141B] text-white">
-            <div class="font-poppins text-[11px] uppercase tracking-wider text-[#9BA8AB]">Rumusan Hipotesis</div>
-            <p class="font-poppins text-sm font-medium mt-1 leading-relaxed">"${h.statement}"</p>
-          </div>
-
-          <div class="space-y-1.5 text-xs">
-            <div class="font-poppins font-bold text-[#06141B]">Mekanisme Teoretis (Bab 2.4)</div>
-            <p class="text-[#4A5C6A] leading-relaxed">${h.theory}</p>
-          </div>
-
-          <div class="space-y-2 pt-2 border-t border-[#CCD0CF] text-xs">
-            <div class="font-poppins font-bold text-[#06141B]">Bukti Empiris Penelitian Terdahulu</div>
-            ${h.evidence.map(ev => `
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3 rounded-xl bg-white border border-[#CCD0CF]">
-                <span class="text-[#253745] font-medium">${ev.author}</span>
-                <span class="font-poppins font-bold text-[#06141B] tabular-nums shrink-0">${ev.stat}</span>
-              </div>
-            `).join("")}
-          </div>
-        </div>
-      `;
-    }
-
-    /* ---------------------------------------------------------------------
-       6. LITERATURE REVIEW MATRIX (TABEL 2.1, BAB 2.1)
-    --------------------------------------------------------------------- */
-    const literatureStudies = [
-      {
-        category: "utama",
-        badge: "Acuan Utama 1 (Model Dasar)",
-        author: "Wasiuzzaman, Basheer, & Vinayan (2026)",
-        title: "Assessing the Role of Psychology, Cognitive Attribute and Opportunity in Determining Retirement Planning Behaviour",
-        vars: "Eksogen: Future time perspective, financial knowledge, income stability • Mediasi: Retirement goal clarity • Endogen: Retirement planning behavior",
-        method: "Kuantitatif — PLS-SEM • Kuesioner pada 397 responden di Brunei Darussalam (usia 20–59 tahun)",
-        findings: "Retirement goal clarity berpengaruh sangat kuat terhadap RPB (β=0,680) serta memediasi penuh pengaruh FTP (β=0,399) dan memediasi signifikan financial knowledge. Keterbatasan: literasi keuangan hanya diukur dengan 5 soal benar-salah."
-      },
-      {
-        category: "utama",
-        badge: "Acuan Utama 2 (Konteks Indonesia)",
-        author: "Alfando, Njo, & Yuliana (2025)",
-        title: "Empowering Indonesian Millennials: The Role of Financial Literacy, Goal Clarity, and Risk Tolerance in Retirement Savings",
-        vars: "Eksogen: Objective & subjective financial literacy • Mediasi: Retirement goal clarity, financial risk tolerance • Endogen: Retirement saving behavior",
-        method: "Kuantitatif — PLS-SEM (SmartPLS 4.0) • 212 responden milenial Indonesia kelahiran 1981–1996 yang bekerja mandiri",
-        findings: "Literasi keuangan subjektif berpengaruh positif langsung maupun melalui mediasi parsial retirement goal clarity (β=0,193), sedangkan literasi objektif tidak signifikan. Merekomendasikan penambahan variabel future time perspective."
-      },
-      {
-        category: "pendukung",
-        badge: "Pendukung 1 (Sumber Instrumen FTP & RPB)",
-        author: "Tomar, Baker, Kumar, & Hoffmann (2021)",
-        title: "Psychological Determinants of Retirement Financial Planning Behavior",
-        vars: "Eksogen: Future time perspective, attitude toward retirement, risk tolerance, social group support • Mediasi: Retirement goal clarity • Moderasi: Financial literacy • Endogen: RPB (9 indikator)",
-        method: "Kuantitatif — PLS-SEM & MGA • 485 perempuan profesional di India",
-        findings: "Retirement goal clarity berpengaruh positif sangat kuat terhadap RPB (β=0,680) dan memediasi penuh pengaruh future time perspective terhadap RPB."
-      },
-      {
-        category: "pendukung",
-        badge: "Pendukung 2 (Konsistensi Mediasi Lintas Negara)",
-        author: "Yeung, Ho, Lam, & Lam (2023)",
-        title: "An Integrated Model on Purchase Intentions of Typical and Tax-Deductible Saving Products: The Roles of Retirement Goal Clarity and Age",
-        vars: "Eksogen: Financial literacy, future time perspective, norma sosial, dukungan sosial • Mediasi: Retirement goal clarity • Moderasi: Usia • Endogen: Purchase intentions",
-        method: "Kuantitatif — Analisis mediasi & moderated mediation • 598 pekerja dewasa di Hong Kong",
-        findings: "Retirement goal clarity memediasi pengaruh financial literacy, norma sosial, dan dukungan sosial terhadap niat membeli produk tabungan pensiun, dengan efek lebih kuat pada pekerja muda."
-      },
-      {
-        category: "pendukung",
-        badge: "Pendukung 3 (Konteks EPF Asia Tenggara)",
-        author: "Kimiyagahlam, Safari, & Mansori (2019)",
-        title: "Influential Behavioral Factors on Retirement Planning Behavior: The Case of Malaysia",
-        vars: "Eksogen: Financial literacy, propensity to plan, future orientation, edukasi keluarga, materialisme • Mediasi: Saving attitude • Endogen: Retirement planning behavior",
-        method: "Kuantitatif — PLS-SEM • 900 orang dewasa di Klang Valley, Malaysia",
-        findings: "Financial literacy, propensity to plan, dan future orientation (β=0,218) berpengaruh positif secara langsung terhadap RPB pada konteks sistem iuran wajib EPF Malaysia."
-      },
-      {
-        category: "tavi",
-        badge: "Posisi Skripsi Ini (FIA UI, 2026)",
-        author: "Tavi Shaquille Ramadhani (2026)",
-        title: "Pengaruh Financial Literacy dan Future Time Perspective terhadap Retirement Planning Behavior dengan Retirement Goal Clarity sebagai Variabel Mediasi (Studi pada Karyawan Sektor Swasta di Jabodetabek)",
-        vars: "Eksogen: Financial literacy (financial attitude & financial behavior — Potrich et al., 2015), future time perspective • Mediasi: Retirement goal clarity • Endogen: Retirement planning behavior",
-        method: "Kuantitatif — PLS-SEM (SmartPLS) • Target 310 karyawan tetap (PKWTT) sektor swasta di Jabodetabek (usia 25–46 tahun, masa kerja ≥ 1 tahun, peserta aktif BPJS TK)",
-        findings: "Mengintegrasikan financial literacy (sikap & perilaku) dan future time perspective sebagai anteseden retirement goal clarity dalam satu model struktural pada karyawan tetap sektor swasta di Indonesia."
-      }
-    ];
-
-    function filterLit(category) {
-      ['all', 'utama', 'pendukung', 'tavi'].forEach(c => {
-        const btn = document.getElementById(`lit-${c}`);
-        if (btn) {
-          if (c === category) btn.classList.add('active');
-          else btn.classList.remove('active');
-        }
-      });
-
-      const filtered = category === 'all'
-        ? literatureStudies
-        : literatureStudies.filter(s => s.category === category);
-
-      const tbody = document.getElementById("literatureTableBody");
-      if (!tbody) return;
-
-      tbody.innerHTML = filtered.map(s => `
-        <tr class="${s.category === 'tavi' ? 'bg-[#F8FAFA]' : ''} align-top">
-          <td class="py-4 pr-6">
-            <span class="inline-block font-poppins text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md ${s.category === 'tavi' ? 'bg-[#06141B] text-white' : 'bg-[#F8FAFA] text-[#253745] border border-[#CCD0CF]'} mb-1.5">
-              ${s.badge}
-            </span>
-            <div class="font-poppins font-bold text-[#06141B] text-xs">${s.author}</div>
-            <div class="text-[#4A5C6A] italic mt-0.5 leading-relaxed">${s.title}</div>
+    function renderTable(filterCode) {
+      const tbody = document.getElementById('instrumentTableBody');
+      const filtered = filterCode === 'ALL' ? instrumentItems : instrumentItems.filter(i => i.code === filterCode);
+      tbody.innerHTML = filtered.map(item => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-3.5 px-4 font-extrabold text-slate-900 align-top">${item.no}.</td>
+          <td class="py-3.5 px-4 align-top">
+            <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-bold text-[11px]">${item.varName}</span>
+            <p class="text-[11px] text-slate-400 mt-1">${item.ref}</p>
           </td>
-          <td class="py-4 px-4 text-[#253745] leading-relaxed">${s.vars}</td>
-          <td class="py-4 px-4 text-[#4A5C6A] leading-relaxed">${s.method}</td>
-          <td class="py-4 pl-4 text-[#06141B] leading-relaxed">${s.findings}</td>
+          <td class="py-3.5 px-4 align-top">
+            <p class="font-semibold text-slate-900">${item.id}</p>
+            <p class="text-xs italic text-slate-500 mt-1">"${item.en}"</p>
+          </td>
         </tr>
-      `).join("");
+      `).join('');
     }
 
-    /* ---------------------------------------------------------------------
-       7. 35-ITEM QUESTIONNAIRE SIMULATOR (TABEL 2.2 & LAMPIRAN 1)
-    --------------------------------------------------------------------- */
-    const questionnaireData = [
-      // Dimensi 1: Financial Attitude (7 Butir — No. 1 s.d. 6)
-      { code: "1", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Pentingnya pengendalian pengeluaran bulanan", text: "Menurut saya, penting untuk mengendalikan pengeluaran bulanan.", val: 4 },
-      { code: "2", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Pentingnya penetapan target keuangan untuk masa depan", text: "Menurut saya, penting untuk menetapkan target keuangan untuk masa depan.", val: 4 },
-      { code: "3", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Pentingnya kebiasaan menabung setiap bulan", text: "Menurut saya, penting untuk menabung setiap bulan.", val: 4 },
-      { code: "4", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Kesadaran pengaruh pengelolaan uang saat ini terhadap masa depan", text: "Cara saya mengelola uang saat ini akan memengaruhi kondisi keuangan saya di masa depan.", val: 4 },
-      { code: "5a", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Pentingnya kepemilikan rencana pengeluaran bulanan", text: "Menurut saya, penting untuk memiliki rencana pengeluaran bulanan.", val: 4 },
-      { code: "5b", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Pentingnya pelaksanaan rencana pengeluaran bulanan", text: "Menurut saya, penting untuk menjalankan rencana pengeluaran bulanan.", val: 4 },
-      { code: "6", varGroup: "FL", dimGroup: "FA", dimLabel: "Financial Attitude", indicator: "Pentingnya investasi secara rutin untuk tujuan jangka panjang", text: "Menurut saya, penting untuk berinvestasi secara rutin demi mencapai tujuan jangka panjang.", val: 4 },
-
-      // Dimensi 2: Financial Behavior (8 Butir — No. 7a s.d. 12)
-      { code: "7a", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Pencatatan pengeluaran pribadi", text: "Saya mencatat pengeluaran pribadi saya.", val: 4 },
-      { code: "7b", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Pengendalian pengeluaran pribadi", text: "Saya mengendalikan pengeluaran pribadi saya.", val: 4 },
-      { code: "8", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Penetapan target keuangan jangka panjang dalam pengelolaan pengeluaran", text: "Saya menetapkan target keuangan jangka panjang yang memengaruhi cara saya mengelola pengeluaran.", val: 4 },
-      { code: "9a", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Pelaksanaan rencana pengeluaran mingguan", text: "Saya menjalankan rencana pengeluaran mingguan.", val: 3 },
-      { code: "9b", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Pelaksanaan rencana pengeluaran bulanan", text: "Saya menjalankan rencana pengeluaran bulanan.", val: 4 },
-      { code: "10", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Kebiasaan menabung setiap bulan", text: "Saya menabung setiap bulan.", val: 4 },
-      { code: "11", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Penyisihan tabungan untuk pembelian barang bernilai besar", text: "Saya menabung agar dapat membeli barang bernilai besar.", val: 4 },
-      { code: "12", varGroup: "FL", dimGroup: "FB", dimLabel: "Financial Behavior", indicator: "Kepemilikan dana cadangan minimal 3x penghasilan bulanan", text: "Saya memiliki dana cadangan setidaknya tiga kali penghasilan bulanan saya untuk keperluan tak terduga.", val: 3 },
-
-      // Variabel 2: Future Time Perspective (5 Butir — No. 13 s.d. 17)
-      { code: "13", varGroup: "FTP", dimGroup: "FTP", dimLabel: "Future Time Perspective", indicator: "Kesenangan memikirkan hal yang akan terjadi di masa depan", text: "Saya senang memikirkan apa yang akan terjadi di masa depan.", val: 4 },
-      { code: "14", varGroup: "FTP", dimGroup: "FTP", dimLabel: "Future Time Perspective", indicator: "Kesenangan membayangkan kehidupan bertahun-tahun ke depan", text: "Saya menikmati membayangkan bagaimana kehidupan saya bertahun-tahun ke depan.", val: 4 },
-      { code: "15", varGroup: "FTP", dimGroup: "FTP", dimLabel: "Future Time Perspective", indicator: "Penantian terhadap kehidupan di masa depan yang jauh", text: "Saya menantikan kehidupan saya di masa depan yang jauh.", val: 4 },
-      { code: "16", varGroup: "FTP", dimGroup: "FTP", dimLabel: "Future Time Perspective", indicator: "Pentingnya kepemilikan pandangan jangka panjang dalam hidup", text: "Menurut saya, penting untuk memiliki pandangan jangka panjang dalam hidup.", val: 4 },
-      { code: "17", varGroup: "FTP", dimGroup: "FTP", dimLabel: "Future Time Perspective", indicator: "Penggambaran diri oleh teman dekat sebagai pribadi berorientasi masa depan", text: "Teman dekat saya akan menggambarkan saya sebagai orang yang berorientasi masa depan.", val: 4 },
-
-      // Variabel 3: Retirement Goal Clarity (5 Butir — No. 18 s.d. 22)
-      { code: "18", varGroup: "RGC", dimGroup: "RGC", dimLabel: "Retirement Goal Clarity", indicator: "Penetapan target spesifik mengenai jumlah dana pensiun", text: "Saya menetapkan target yang spesifik mengenai jumlah dana yang perlu saya siapkan untuk masa pensiun.", val: 4 },
-      { code: "19", varGroup: "RGC", dimGroup: "RGC", dimLabel: "Retirement Goal Clarity", indicator: "Intensitas pemikiran mengenai kualitas hidup setelah pensiun", text: "Saya banyak memikirkan kualitas hidup yang saya inginkan setelah pensiun.", val: 4 },
-      { code: "20", varGroup: "RGC", dimGroup: "RGC", dimLabel: "Retirement Goal Clarity", indicator: "Kepemilikan gambaran yang jelas mengenai kehidupan setelah pensiun", text: "Saya memiliki gambaran yang jelas mengenai kehidupan saya setelah pensiun.", val: 4 },
-      { code: "21", varGroup: "RGC", dimGroup: "RGC", dimLabel: "Retirement Goal Clarity", indicator: "Penetapan tujuan yang jelas dalam pencarian informasi pensiun", text: "Saya menetapkan tujuan yang jelas dalam mencari informasi mengenai masa pensiun.", val: 4 },
-      { code: "22", varGroup: "RGC", dimGroup: "RGC", dimLabel: "Retirement Goal Clarity", indicator: "Pelaksanaan diskusi mengenai rencana pensiun dengan orang terdekat", text: "Saya pernah mendiskusikan rencana pensiun dengan pasangan, teman, atau orang terdekat.", val: 4 },
-
-      // Variabel 4: Retirement Planning Behavior (10 Butir — No. 23 s.d. 31)
-      { code: "23", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Pelaksanaan perhitungan perkiraan jumlah dana pensiun", text: "Saya telah melakukan perhitungan untuk memperkirakan jumlah dana yang perlu saya siapkan agar dapat pensiun dengan nyaman.", val: 4 },
-      { code: "24a", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Intensitas membaca literatur mengenai perencanaan pensiun", text: "Saya sering membaca artikel, buku, atau brosur untuk mempelajari perencanaan pensiun.", val: 4 },
-      { code: "24b", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Intensitas pencarian informasi di internet mengenai perencanaan pensiun", text: "Saya sering mencari informasi di internet untuk mempelajari perencanaan pensiun.", val: 4 },
-      { code: "25", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Pencarian informasi besaran manfaat pensiun di masa depan", text: "Saya telah mencari tahu besaran manfaat pensiun yang akan saya terima di masa depan.", val: 4 },
-      { code: "26", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Pencarian informasi persiapan keuangan untuk masa pensiun", text: "Saya telah mencari tahu mengenai persiapan keuangan untuk masa pensiun.", val: 4 },
-      { code: "27", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Penyisihan dana rutin pada program tabungan pensiun sukarela", text: "Saya rutin menyisihkan dana pada program tabungan pensiun sukarela di luar program wajib.", val: 4 },
-      { code: "28", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Perbandingan kesiapan jumlah dana pensiun terhadap rekan seusia", text: "Dibandingkan rekan seusia saya, saya telah menyiapkan dana yang jauh lebih banyak untuk masa pensiun.", val: 4 },
-      { code: "29", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Penyisihan persentase tetap dari penghasilan untuk tabungan pensiun", text: "Saya rutin menyisihkan persentase tetap dari penghasilan saya untuk tabungan pensiun.", val: 4 },
-      { code: "30", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Upaya menabung secara sadar untuk masa pensiun", text: "Saya secara sadar berusaha menabung untuk masa pensiun.", val: 4 },
-      { code: "31", varGroup: "RPB", dimGroup: "RPB", dimLabel: "Retirement Planning Behavior", indicator: "Kesesuaian aktivitas menabung dengan rencana kehidupan saat pensiun", text: "Saya telah menabung sesuai dengan rencana kehidupan yang saya inginkan saat pensiun.", val: 4 }
-    ];
-
-    let currentItemFilter = "ALL";
-
-    function renderQuestionnaireItems() {
-      const listEl = document.getElementById("questionnaireItemsList");
-      if (!listEl) return;
-
-      const items = currentItemFilter === "ALL"
-        ? questionnaireData
-        : questionnaireData.filter(item => item.dimGroup === currentItemFilter);
-
-      listEl.innerHTML = items.map(item => `
-        <div class="py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
-          <div class="space-y-1 max-w-2xl">
-            <div class="flex flex-wrap items-center gap-2 font-poppins">
-              <span class="px-2 py-0.5 rounded bg-[#06141B] text-white font-bold text-[11px]">Butir ${item.code}</span>
-              <span class="text-[#253745] font-semibold">${item.dimLabel}</span>
-              <span class="text-[#9BA8AB]">•</span>
-              <span class="text-[#4A5C6A]">${item.indicator}</span>
-            </div>
-            <p class="font-helvetica text-sm text-[#06141B] leading-relaxed">${item.text}</p>
-          </div>
-
-          <div class="flex items-center gap-1.5 shrink-0 font-poppins">
-            ${[1, 2, 3, 4, 5].map(score => `
-              <button
-                type="button"
-                onclick="setItemVal('${item.code}', ${score})"
-                class="w-9 h-9 rounded-xl border text-xs font-semibold transition-all ${
-                  item.val === score
-                    ? 'bg-[#06141B] text-white border-[#06141B]'
-                    : 'bg-white text-[#4A5C6A] border-[#CCD0CF] hover:border-[#253745] hover:text-[#06141B]'
-                }"
-              >
-                ${score}
-              </button>
-            `).join("")}
-          </div>
-        </div>
-      `).join("");
+    function filterItems(code) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('tab-' + code).classList.add('active');
+      renderTable(code);
     }
 
-    function setItemVal(code, score) {
-      const target = questionnaireData.find(i => i.code === code);
-      if (target) {
-        target.val = score;
-        renderQuestionnaireItems();
-        updateSimulatorDashboard();
-      }
+    function copyBitlyLink() {
+      navigator.clipboard.writeText('https://bit.ly/4BKjazX');
+      const b1 = document.getElementById('copyBtnHero');
+      const b2 = document.getElementById('copyBtnFooter');
+      if (b1) { b1.innerText = 'Tersalin!'; setTimeout(() => b1.innerText = 'Salin Link', 2000); }
+      if (b2) { b2.innerText = 'Tersalin!'; setTimeout(() => b2.innerText = 'Salin Link Bitly', 2000); }
     }
 
-    function updateSimulatorDashboard() {
-      const cardsEl = document.getElementById("meanScoreCards");
-      if (!cardsEl) return;
-
-      const groups = [
-        { key: "FL", name: "Financial Literacy", sub: "15 Butir (Attitude & Behavior)" },
-        { key: "FTP", name: "Future Time Perspective", sub: "5 Butir (Koposko & Hershey, 2014)" },
-        { key: "RGC", name: "Retirement Goal Clarity", sub: "5 Butir Mediator (Stawski et al., 2007)" },
-        { key: "RPB", name: "Retirement Planning Behavior", sub: "10 Butir Endogen (Tomar et al., 2021)" }
-      ];
-
-      cardsEl.innerHTML = groups.map(g => {
-        const subItems = questionnaireData.filter(i => i.varGroup === g.key);
-        const mean = subItems.reduce((acc, cur) => acc + cur.val, 0) / subItems.length;
-        const category = getNeumanCategory(mean);
-        return `
-          <div class="p-4 rounded-xl bg-white border border-[#CCD0CF] flex flex-col justify-between">
-            <div>
-              <div class="font-poppins text-xs font-bold text-[#06141B] italic">${g.name}</div>
-              <div class="text-[11px] text-[#4A5C6A]">${g.sub}</div>
-            </div>
-            <div class="mt-3 pt-3 border-t border-[#CCD0CF] flex items-baseline justify-between">
-              <span class="font-poppins text-2xl font-bold text-[#06141B] tabular-nums">${formatDecimalID(mean)}</span>
-              <span class="font-poppins text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#F8FAFA] border border-[#CCD0CF] text-[#253745]">
-                ${category}
-              </span>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function filterItems(groupCode) {
-      currentItemFilter = groupCode;
-      ['ALL', 'FA', 'FB', 'FTP', 'RGC', 'RPB'].forEach(g => {
-        const btn = document.getElementById(`item-tab-${g}`);
-        if (g === groupCode) btn.classList.add('active');
-        else btn.classList.remove('active');
-      });
-      renderQuestionnaireItems();
-    }
-
-    function loadSimulatorPreset(type) {
-      questionnaireData.forEach(item => {
-        if (type === 'paradoks') {
-          if (item.varGroup === 'FL' || item.varGroup === 'FTP') item.val = 4;
-          else item.val = 2;
-        } else if (type === 'ideal') {
-          item.val = 5;
-        } else if (type === 'rentan') {
-          item.val = 2;
-        }
-      });
-      renderQuestionnaireItems();
-      updateSimulatorDashboard();
-      syncCalculatorFrom35Items();
-    }
-
-    /* ---------------------------------------------------------------------
-       8. METHODOLOGY RUBRIC STAGES & SCREENING CHECKER
-    --------------------------------------------------------------------- */
-    const methodStages = {
-      pretest: [
-        { title: "Uji Keterbacaan (Face Validity)", rule: "Validasi Awal", desc: "Memastikan redaksi butir pernyataan mudah dipahami oleh karyawan sektor swasta sebelum penyebaran kuesioner pre-test." },
-        { title: "Ukuran Sampel Pre-Test (Subbab 3.5.2.1)", rule: "n = 30 Responden", desc: "Mengacu pada Perneger et al. (2015) dan Alfando et al. (2025). Responden pre-test tidak diikutsertakan kembali pada data utama." },
-        { title: "Uji Validitas Pre-Test (Subbab 3.5.2.2)", rule: "Corrected Item-Total Correlation (r > 0,361)", desc: "Digunakan pada sampel kecil (n=30, df=28, α=0,05 dua sisi) karena jumlah indikator (31) melebihi jumlah responden pre-test." },
-        { title: "Uji Reliabilitas Pre-Test (Subbab 3.5.2.3)", rule: "Cronbach's Alpha > 0,60", desc: "Ambang batas bawah reliabilitas yang dapat diterima pada tahap pre-test (Hair et al., 2019; Malhotra, 2020)." },
-        { title: "Common Method Variance (Subbab 3.5.4.1)", rule: "Harman's Single-Factor Test (< 50%)", desc: "Memastikan satu faktor tunggal tidak menjelaskan lebih dari 50% total varians (Podsakoff et al., 2003)." }
-      ],
-      outer: [
-        { title: "Reliabilitas Indikator", rule: "Outer Loading > 0,708", desc: "Indikator dengan loading 0,50–0,708 dapat dipertahankan apabila penghapusannya tidak meningkatkan nilai CR atau AVE (Hair et al., 2019)." },
-        { title: "Konsistensi Internal", rule: "Cronbach's Alpha & Composite Reliability > 0,70", desc: "Mengukur keandalan konsistensi internal konstruk laten pada data utama (Hair et al., 2011)." },
-        { title: "Validitas Konvergen", rule: "Average Variance Extracted (AVE) > 0,50", desc: "Konstruk mampu menjelaskan lebih dari 50% varians indikatornya (Bagozzi & Yi, 1988)." },
-        { title: "Validitas Diskriminan", rule: "Fornell-Larcker & HTMT < 0,90", desc: "Memastikan setiap konstruk berbeda secara empiris dari konstruk lainnya (Henseler et al., 2015)." }
-      ],
-      inner: [
-        { title: "Uji Multikolinearitas", rule: "Inner VIF < 5 (Ideal < 3,3)", desc: "Memastikan tidak ada kolinearitas antarvariabel prediktor (Hair et al., 2021)." },
-        { title: "Koefisien Determinasi (R²)", rule: "0,25 (Lemah) • 0,50 (Sedang) • 0,75 (Kuat)", desc: "Mengukur kekuatan prediksi model struktural pada variabel endogen." },
-        { title: "Effect Size (f²)", rule: "0,02 (Lemah) • 0,15 (Sedang) • 0,35 (Kuat)", desc: "Menilai besarnya kontribusi masing-masing variabel eksogen (Cohen, 1988)." },
-        { title: "Predictive Relevance & Model Fit", rule: "Q² > 0 & SRMR < 0,08", desc: "Memastikan relevansi prediktif dan kecocokan model struktural (Hussain et al., 2018)." }
-      ],
-      mediasi: [
-        { title: "Prosedur Bootstrapping", rule: "5.000 Subsamples (t > 1,96; p < 0,05)", desc: "Menguji signifikansi pengaruh langsung (H1–H4) dan specific indirect effect (H5–H6)." },
-        { title: "Mediasi Penuh (Full Mediation)", rule: "Indirect Signifikan & Direct Tidak Signifikan", desc: "Seluruh pengaruh variabel eksogen terhadap RPB berlangsung melalui Retirement Goal Clarity." },
-        { title: "Mediasi Parsial (Partial Mediation)", rule: "Indirect & Direct Sama-Sama Signifikan", desc: "Sebagian pengaruh berlangsung secara langsung dan sebagian lagi dimediasi oleh Retirement Goal Clarity." }
-      ]
-    };
-
-    function switchMethodStage(stageKey) {
-      ['pretest', 'outer', 'inner', 'mediasi'].forEach(k => {
-        const btn = document.getElementById(`mstage-${k}`);
-        if (k === stageKey) btn.classList.add('active');
-        else btn.classList.remove('active');
-      });
-
-      document.getElementById("methodStageContent").innerHTML = methodStages[stageKey].map(item => `
-        <div class="py-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 text-xs">
-          <div class="max-w-xl">
-            <div class="font-poppins font-bold text-[#06141B] text-sm">${item.title}</div>
-            <p class="text-[#4A5C6A] mt-1 leading-relaxed">${item.desc}</p>
-          </div>
-          <span class="font-poppins text-xs font-semibold text-[#253745] shrink-0">${item.rule}</span>
-        </div>
-      `).join("");
-    }
-
-    function evaluateScreening() {
-      const checks = document.querySelectorAll(".screen-chk");
-      const allChecked = Array.from(checks).every(c => c.checked);
-      const box = document.getElementById("screeningResultBox");
-
-      if (allChecked) {
-        box.className = "mt-6 p-4 rounded-xl bg-[#06141B] text-white text-xs";
-        box.innerHTML = `
-          <div class="font-poppins font-bold text-[#CCD0CF] uppercase">STATUS: LOLOS SARINGAN (RESPONDEN VALID)</div>
-          <p class="text-[#9BA8AB] mt-1">
-            Responden memenuhi seluruh 5 kriteria <em>purposive sampling</em> dan dapat melanjutkan ke pengisian 35 butir pernyataan utama.
-          </p>
-        `;
-      } else {
-        box.className = "mt-6 p-4 rounded-xl bg-[#253745] text-white text-xs";
-        box.innerHTML = `
-          <div class="font-poppins font-bold text-[#CCD0CF] uppercase">STATUS: TIDAK LOLOS SARINGAN (BERHENTI MENGISI)</div>
-          <p class="text-[#9BA8AB] mt-1">
-            Salah satu kriteria saringan tidak terpenuhi. Kuesioner otomatis menghentikan pengisian sesuai prosedur Lampiran 1 (hal. 66).
-          </p>
-        `;
-      }
-    }
-
-    /* ---------------------------------------------------------------------
-       INITIALIZE ALL COMPONENTS ON LOAD
-    --------------------------------------------------------------------- */
-    window.addEventListener("DOMContentLoaded", () => {
-      updateThesisCalculator();
-      setHeroCwoMode('aktif');
-      renderEmpiricalCharts();
-      selectHypothesis('H1');
-      filterLit('all');
-      renderQuestionnaireItems();
-      updateSimulatorDashboard();
-      switchMethodStage('pretest');
-    });
+    // Initial render
+    renderTable('ALL');
   </script>
 </body>
 </html>
